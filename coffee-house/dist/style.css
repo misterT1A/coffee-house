@@ -1,0 +1,3 @@
+:root{--black: #525151}@font-face{font-family:"Montserrat";src:url(assets/montserrat-v23-latin_cyrillic-700.woff2) format("woff2"),url(assets/montserrat-v23-latin_cyrillic-700.woff) format("woff")}:root{--black: #525151}body{font-family:"Montserrat";color:#525151;color:var(--black);background-color:#a5a5a5}.elem{color:red}.img{background-size:cover}
+
+/*# sourceMappingURL=style.css.map*/
