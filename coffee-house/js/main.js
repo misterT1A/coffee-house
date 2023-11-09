@@ -201,14 +201,37 @@ const header_header = toElement(header);
 /* harmony default export */ var modules_header_header = ({
   header: header_header
 });
+;// CONCATENATED MODULE: ./src/modules/main/enjoy/enjoy.html
+// Imports
+
+var enjoy_HTML_LOADER_IMPORT_0_ = new URL(/* asset import */ __webpack_require__(958), __webpack_require__.b);
+// Module
+var enjoy_HTML_LOADER_REPLACEMENT_0_ = getUrl_default()(enjoy_HTML_LOADER_IMPORT_0_);
+var enjoy_code = "<section id=\"enjoy\" class=\"enjoy\"> <div class=\"container\"> <div class=\"enjoy_wrapper\"> <div class=\"enjoy_inner\"> <h1 class=\"enjoy_title\"><span class=\"enjoy_word\">Enjoy</span> premium coffee at our charming cafe</h1> <span class=\"enjoy_description\">With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.</span> <a href=\"#\" class=\"enjoy_btn\"> <span class=\"enjoy_btn_text\">Menu</span> <img class=\"enjoy_btn_logo\" src=\"" + enjoy_HTML_LOADER_REPLACEMENT_0_ + "\" alt=\"coffee-cup\"> </a> </div> </div> </div> </section>";
+// Exports
+/* harmony default export */ var enjoy = (enjoy_code);
+;// CONCATENATED MODULE: ./src/modules/main/enjoy/enjoy.js
+
+
+
+const enjoy_enjoy = toElement(enjoy);
+/* harmony default export */ var main_enjoy_enjoy = ({
+  enjoy: enjoy_enjoy
+});
+;// CONCATENATED MODULE: ./src/modules/main/main.js
+
+const main = document.createElement('main');
+main.append(main_enjoy_enjoy.enjoy);
+/* harmony default export */ var main_main = (main);
 ;// CONCATENATED MODULE: ./src/index.js
 
 
 
 // components
 
+
 const body = document.querySelector('body');
-body.append(modules_header_header.header);
+body.append(modules_header_header.header, main_main);
 }();
 /******/ })()
 ;
