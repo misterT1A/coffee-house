@@ -3,6 +3,7 @@
 var __webpack_exports__ = {};
 
 
+console.log('ddd');
 /******/ })()
 ;
-//# sourceMappingURL=main.js.map
+//# sourceMappingURL=menu.js.map

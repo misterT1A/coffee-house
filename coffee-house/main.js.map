@@ -1,1 +1,0 @@
-{"version":3,"file":"main.js","mappings":";;;AAAsB","sources":["webpack://coffe/./src/index.js"],"sourcesContent":["import './index.html';\r\nimport './index.scss';\r\n\r\n"],"names":[],"sourceRoot":""}
