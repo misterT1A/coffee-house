@@ -41,6 +41,13 @@ module.exports = __webpack_require__.p + "assets/img/coffee-cup.svg";
 
 /***/ }),
 
+/***/ 796:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/coffee-slider-1.png";
+
+/***/ }),
+
 /***/ 483:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -218,10 +225,28 @@ const enjoy_enjoy = toElement(enjoy);
 /* harmony default export */ var main_enjoy_enjoy = ({
   enjoy: enjoy_enjoy
 });
+;// CONCATENATED MODULE: ./src/modules/main/Favourites_Coffee/favorites.html
+// Imports
+
+var favorites_HTML_LOADER_IMPORT_0_ = new URL(/* asset import */ __webpack_require__(796), __webpack_require__.b);
+// Module
+var favorites_HTML_LOADER_REPLACEMENT_0_ = getUrl_default()(favorites_HTML_LOADER_IMPORT_0_);
+var favorites_code = "<section id=\"favoritesCoffe\" class=\"favorites\"> <div class=\"container\"> <div class=\"favorites_wrapper\"> <h2 class=\"favorites_title\">Choose your <span class=\"favorites_word\">favorite</span> coffee</h2> <div class=\"favorites_slider_inner\"> <div class=\"favorites_slider_wrapper\"> <div class=\"fav_clider_arrow\"> <svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" fill=\"transparent\" xmlns=\"http://www.w3.org/2000/svg\"> <rect x=\"0.5\" y=\"0.5\" width=\"59\" height=\"59\" rx=\"29.5\" stroke=\"#665F55\"/> <path class=\"svg_arrow\" d=\"M36.5 30H24M24 30L30 24M24 30L30 36\" stroke=\"#403F3D\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> </svg> </div> <div class=\"fav_slider\"> <div class=\"fav_slider_content\"> <img src=\"" + favorites_HTML_LOADER_REPLACEMENT_0_ + "\" alt=\"coffe1\" class=\"fav_slider_img\"> <div class=\"fav_slider_cont_description\"> <h4 class=\"fav_slider_description_title\">S’mores Frappuccino</h4> <span class=\"fav_slider_description_text\">This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.</span> <span class=\"fav_slider_description_price\">$5.50</span> </div> </div> </div> <div class=\"fav_clider_arrow\"> <svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" fill=\"transparent\" xmlns=\"http://www.w3.org/2000/svg\"> <rect x=\"0.5\" y=\"0.5\" width=\"59\" height=\"59\" rx=\"29.5\" stroke=\"#665F55\"/> <path class=\"svg_arrow\" d=\"M24 30H36.5M36.5 30L30.5 24M36.5 30L30.5 36\" stroke=\"#403F3D\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> </svg> </div> </div> <div class=\"favorites_slider_pagination_wrapper\"> <div class=\"fav_pag_inner\"> <div class=\"fav_pag_element fav_pag_active\"></div> <div class=\"fav_pag_element\"></div> <div class=\"fav_pag_element\"></div> </div> </div> </div> </div> </div></section>";
+// Exports
+/* harmony default export */ var favorites = (favorites_code);
+;// CONCATENATED MODULE: ./src/modules/main/Favourites_Coffee/favorites.js
+
+
+
+const favoritesCoffe = toElement(favorites);
+/* harmony default export */ var Favourites_Coffee_favorites = ({
+  favoritesCoffe
+});
 ;// CONCATENATED MODULE: ./src/modules/main/main.js
 
+
 const main = document.createElement('main');
-main.append(main_enjoy_enjoy.enjoy);
+main.append(main_enjoy_enjoy.enjoy, Favourites_Coffee_favorites.favoritesCoffe);
 /* harmony default export */ var main_main = (main);
 ;// CONCATENATED MODULE: ./src/index.js
 
