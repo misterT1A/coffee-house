@@ -34,6 +34,34 @@ module.exports = function (url, options) {
 
 /***/ }),
 
+/***/ 934:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/about-1.jpg";
+
+/***/ }),
+
+/***/ 696:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/about-2.jpg";
+
+/***/ }),
+
+/***/ 310:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/about-3.jpg";
+
+/***/ }),
+
+/***/ 764:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/about-4.jpg";
+
+/***/ }),
+
 /***/ 958:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -242,11 +270,35 @@ const favoritesCoffe = toElement(favorites);
 /* harmony default export */ var Favourites_Coffee_favorites = ({
   favoritesCoffe
 });
+;// CONCATENATED MODULE: ./src/modules/main/About/about.html
+// Imports
+
+var about_HTML_LOADER_IMPORT_0_ = new URL(/* asset import */ __webpack_require__(934), __webpack_require__.b);
+var about_HTML_LOADER_IMPORT_1_ = new URL(/* asset import */ __webpack_require__(696), __webpack_require__.b);
+var ___HTML_LOADER_IMPORT_2___ = new URL(/* asset import */ __webpack_require__(310), __webpack_require__.b);
+var ___HTML_LOADER_IMPORT_3___ = new URL(/* asset import */ __webpack_require__(764), __webpack_require__.b);
+// Module
+var about_HTML_LOADER_REPLACEMENT_0_ = getUrl_default()(about_HTML_LOADER_IMPORT_0_);
+var about_HTML_LOADER_REPLACEMENT_1_ = getUrl_default()(about_HTML_LOADER_IMPORT_1_);
+var ___HTML_LOADER_REPLACEMENT_2___ = getUrl_default()(___HTML_LOADER_IMPORT_2___);
+var ___HTML_LOADER_REPLACEMENT_3___ = getUrl_default()(___HTML_LOADER_IMPORT_3___);
+var about_code = "<section id=\"about\" class=\"about\"> <div class=\"container\"> <div class=\"about_wrapper\"> <h2 class=\"abou_title\">Resource is <span class=\"about_word\">the perfect and cozy place</span> where you can enjoy a variety of hot beverages, relax, catch up with friends, or get some work done.</h2> <div class=\"about_imgs\"> <div class=\"about_left\"> <div class=\"about_elem\"> <img class=\"about_img\" src=\"" + about_HTML_LOADER_REPLACEMENT_0_ + "\" alt=\"about-1\"> </div> <div class=\"about_elem about_elem_min\"> <img class=\"about_img\" src=\"" + about_HTML_LOADER_REPLACEMENT_1_ + "\" alt=\"about-2\"> </div> </div> <div class=\"about_right\"> <div class=\"about_elem about_elem_min\"> <img class=\"about_img\" src=\"" + ___HTML_LOADER_REPLACEMENT_2___ + "\" alt=\"about-3\"> </div> <div class=\"about_elem\"> <img class=\"about_img\" src=\"" + ___HTML_LOADER_REPLACEMENT_3___ + "\" alt=\"about-4\"> </div> </div> </div> </div> </div> </section>";
+// Exports
+/* harmony default export */ var about = (about_code);
+;// CONCATENATED MODULE: ./src/modules/main/About/about.js
+
+
+
+const about_about = toElement(about);
+/* harmony default export */ var About_about = ({
+  about: about_about
+});
 ;// CONCATENATED MODULE: ./src/modules/main/main.js
 
 
+
 const main = document.createElement('main');
-main.append(main_enjoy_enjoy.enjoy, Favourites_Coffee_favorites.favoritesCoffe);
+main.append(main_enjoy_enjoy.enjoy, Favourites_Coffee_favorites.favoritesCoffe, About_about.about);
 /* harmony default export */ var main_main = (main);
 ;// CONCATENATED MODULE: ./src/index.js
 
