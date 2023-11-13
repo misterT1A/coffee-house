@@ -34,6 +34,34 @@ module.exports = function (url, options) {
 
 /***/ }),
 
+/***/ 934:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/about-1.jpg";
+
+/***/ }),
+
+/***/ 696:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/about-2.jpg";
+
+/***/ }),
+
+/***/ 310:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/about-3.jpg";
+
+/***/ }),
+
+/***/ 764:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/about-4.jpg";
+
+/***/ }),
+
 /***/ 958:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -52,6 +80,13 @@ module.exports = __webpack_require__.p + "assets/img/coffee-slider-1.png";
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "assets/img/logo.svg";
+
+/***/ }),
+
+/***/ 619:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/mobile-screensLow.png";
 
 /***/ })
 
@@ -242,11 +277,53 @@ const favoritesCoffe = toElement(favorites);
 /* harmony default export */ var Favourites_Coffee_favorites = ({
   favoritesCoffe
 });
+;// CONCATENATED MODULE: ./src/modules/main/About/about.html
+// Imports
+
+var about_HTML_LOADER_IMPORT_0_ = new URL(/* asset import */ __webpack_require__(934), __webpack_require__.b);
+var about_HTML_LOADER_IMPORT_1_ = new URL(/* asset import */ __webpack_require__(696), __webpack_require__.b);
+var ___HTML_LOADER_IMPORT_2___ = new URL(/* asset import */ __webpack_require__(310), __webpack_require__.b);
+var ___HTML_LOADER_IMPORT_3___ = new URL(/* asset import */ __webpack_require__(764), __webpack_require__.b);
+// Module
+var about_HTML_LOADER_REPLACEMENT_0_ = getUrl_default()(about_HTML_LOADER_IMPORT_0_);
+var about_HTML_LOADER_REPLACEMENT_1_ = getUrl_default()(about_HTML_LOADER_IMPORT_1_);
+var ___HTML_LOADER_REPLACEMENT_2___ = getUrl_default()(___HTML_LOADER_IMPORT_2___);
+var ___HTML_LOADER_REPLACEMENT_3___ = getUrl_default()(___HTML_LOADER_IMPORT_3___);
+var about_code = "<section id=\"about\" class=\"about\"> <div class=\"container\"> <div class=\"about_wrapper\"> <h2 class=\"abou_title\">Resource is <span class=\"about_word\">the perfect and cozy place</span> where you can enjoy a variety of hot beverages, relax, catch up with friends, or get some work done.</h2> <div class=\"about_imgs\"> <div class=\"about_left\"> <div class=\"about_elem\"> <img class=\"about_img\" src=\"" + about_HTML_LOADER_REPLACEMENT_0_ + "\" alt=\"about-1\"> </div> <div class=\"about_elem about_elem_min\"> <img class=\"about_img\" src=\"" + about_HTML_LOADER_REPLACEMENT_1_ + "\" alt=\"about-2\"> </div> </div> <div class=\"about_right\"> <div class=\"about_elem about_elem_min\"> <img class=\"about_img\" src=\"" + ___HTML_LOADER_REPLACEMENT_2___ + "\" alt=\"about-3\"> </div> <div class=\"about_elem\"> <img class=\"about_img\" src=\"" + ___HTML_LOADER_REPLACEMENT_3___ + "\" alt=\"about-4\"> </div> </div> </div> </div> </div> </section>";
+// Exports
+/* harmony default export */ var about = (about_code);
+;// CONCATENATED MODULE: ./src/modules/main/About/about.js
+
+
+
+const about_about = toElement(about);
+/* harmony default export */ var About_about = ({
+  about: about_about
+});
+;// CONCATENATED MODULE: ./src/modules/main/Mobile App/mobile.html
+// Imports
+
+var mobile_HTML_LOADER_IMPORT_0_ = new URL(/* asset import */ __webpack_require__(619), __webpack_require__.b);
+// Module
+var mobile_HTML_LOADER_REPLACEMENT_0_ = getUrl_default()(mobile_HTML_LOADER_IMPORT_0_);
+var mobile_code = "<section id=\"mobile\" class=\"mobile\"> <div class=\"container\"> <div class=\"mobile_wrapper\"> <div class=\"mobile_left_part\"> <div class=\"mobile_content\"> <h2 class=\"mobile_title\"><span class=\"mobile_word\">Download</span> our apps to start ordering</h2> <span class=\"mobile_desription\">Download the Resource app today and experience the comfort of ordering your favorite coffee from wherever you are</span> <div class=\"mobile_buttons\"> <a href=\"#\" class=\"mobile_btn\"> <svg width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <g id=\"icon\"> <g id=\"Icon\"> <g id=\"Vector\" class=\"svg_path\"> <path d=\"M26.7063 18.6307C26.6694 14.6324 30.0641 12.6872 30.2193 12.5966C28.2967 9.86366 25.3169 9.49026 24.2697 9.46048C21.767 9.20369 19.3393 10.9206 18.0644 10.9206C16.764 10.9206 14.8008 9.48529 12.6848 9.52747C9.96196 9.56841 7.41468 11.1055 6.01762 13.4923C3.13444 18.359 5.28474 25.5108 8.04705 29.4446C9.42884 31.3712 11.0435 33.5223 13.1569 33.4466C15.2245 33.3635 15.9968 32.1614 18.4919 32.1614C20.9641 32.1614 21.6893 33.4466 23.8447 33.3983C26.0637 33.3635 27.4608 31.463 28.7942 29.519C30.3911 27.3108 31.0323 25.1362 31.0578 25.0245C31.0056 25.0071 26.7483 23.4229 26.7063 18.6307Z\" fill=\"#403F3D\"/> <path d=\"M22.6347 6.87268C23.7468 5.51675 24.5076 3.67205 24.2964 1.80005C22.6869 1.86952 20.674 2.88554 19.5149 4.21169C18.4893 5.38029 17.5732 7.29571 17.8099 9.097C19.6179 9.2285 21.4743 8.20752 22.6347 6.87268Z\" fill=\"#403F3D\"/> </g> </g> </g> </svg> <div class=\"mobile_btn_content\"> <span class=\"mobile_btn_title\">Available on the</span> <span class=\"mobile_btn_text\">App Store</span> </div> </a> <a href=\"#\" class=\"mobile_btn\"> <svg width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <g id=\"icon\"> <g id=\"Icon\" class=\"svg_path\"> <path id=\"Vector\" d=\"M3.7558 3.20309C3.39335 3.57302 3.18359 4.14896 3.18359 4.89483V31.4995C3.18359 32.2454 3.39335 32.8213 3.7558 33.1913L3.84525 33.2725L19.1359 18.3701V18.0182L3.84525 3.11587L3.7558 3.20309Z\" fill=\"#403F3D\"/> <path id=\"Vector_2\" d=\"M26.0776 23.34L20.9863 18.3701V18.0182L26.0837 13.0482L26.1979 13.1129L32.2345 16.4618C33.9573 17.4122 33.9573 18.9761 32.2345 19.9325L26.1979 23.2754L26.0776 23.34Z\" fill=\"#403F3D\"/> <path id=\"Vector_3\" d=\"M25.2733 24.2008L20.0617 19.1196L4.68164 34.1167C5.25384 34.7031 6.18695 34.7738 7.24807 34.1873L25.2733 24.2008Z\" fill=\"#403F3D\"/> <path id=\"Vector_4\" d=\"M25.2733 12.1876L7.24807 2.20103C6.18695 1.62058 5.25384 1.69125 4.68164 2.27772L20.0617 17.2688L25.2733 12.1876Z\" fill=\"#403F3D\"/> </g> </g> </svg> <div class=\"mobile_btn_content\"> <span class=\"mobile_btn_title\">Available on the</span> <span class=\"mobile_btn_text\">Google Play</span> </div> </a> </div> </div> </div> <div class=\"mobile_right_part\"> <img class=\"mobile_img\" src=\"" + mobile_HTML_LOADER_REPLACEMENT_0_ + "\" alt=\"mobiles\"> </div> </div> </div> </section>";
+// Exports
+/* harmony default export */ var mobile = (mobile_code);
+;// CONCATENATED MODULE: ./src/modules/main/Mobile App/mobile.js
+
+
+
+const mobile_mobile = toElement(mobile);
+/* harmony default export */ var Mobile_App_mobile = ({
+  mobile: mobile_mobile
+});
 ;// CONCATENATED MODULE: ./src/modules/main/main.js
 
 
+
+
 const main = document.createElement('main');
-main.append(main_enjoy_enjoy.enjoy, Favourites_Coffee_favorites.favoritesCoffe);
+main.append(main_enjoy_enjoy.enjoy, Favourites_Coffee_favorites.favoritesCoffe, About_about.about, Mobile_App_mobile.mobile);
 /* harmony default export */ var main_main = (main);
 ;// CONCATENATED MODULE: ./src/index.js
 
