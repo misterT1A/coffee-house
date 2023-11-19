@@ -122,3 +122,14 @@
 .fav_pag_active {
     background-color: $border-dark;
 }
+
+@media screen and (max-width: 768px) {
+    .favorites_slider_inner {
+        padding: 0;
+    }
+
+    .favorites_slider_wrapper {
+        margin-bottom: 39px;
+    }
+
+}
