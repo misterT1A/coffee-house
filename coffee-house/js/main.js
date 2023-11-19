@@ -76,6 +76,13 @@ module.exports = __webpack_require__.p + "assets/img/coffee-slider-1.png";
 
 /***/ }),
 
+/***/ 677:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/img/favicon-32x32.png";
+
+/***/ }),
+
 /***/ 483:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -215,26 +222,35 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 !function() {
 
+// EXTERNAL MODULE: ./node_modules/html-loader/dist/runtime/getUrl.js
+var getUrl = __webpack_require__(91);
+var getUrl_default = /*#__PURE__*/__webpack_require__.n(getUrl);
+;// CONCATENATED MODULE: ./src/index.html
+// Imports
+
+var ___HTML_LOADER_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(677), __webpack_require__.b);
+// Module
+var ___HTML_LOADER_REPLACEMENT_0___ = getUrl_default()(___HTML_LOADER_IMPORT_0___);
+var code = "<!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"> <title>Coffe shop</title> <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"> <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin> <link href=\"https://fonts.cdnfonts.com/css/inter\" rel=\"stylesheet\"> <link rel=\"icon\" href=\"" + ___HTML_LOADER_REPLACEMENT_0___ + "\"> </head> <body> </body> </html>";
+// Exports
+/* harmony default export */ var src = ((/* unused pure expression or super */ null && (code)));
 ;// CONCATENATED MODULE: ./src/modules/utils/HtmlToElement.js
 function toElement(HTMLString) {
   const template = document.createElement('template');
   template.innerHTML = HTMLString;
   return template.content.firstChild;
 }
-// EXTERNAL MODULE: ./node_modules/html-loader/dist/runtime/getUrl.js
-var getUrl = __webpack_require__(91);
-var getUrl_default = /*#__PURE__*/__webpack_require__.n(getUrl);
 ;// CONCATENATED MODULE: ./src/modules/header/header.html
 // Imports
 
-var ___HTML_LOADER_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(483), __webpack_require__.b);
+var header_HTML_LOADER_IMPORT_0_ = new URL(/* asset import */ __webpack_require__(483), __webpack_require__.b);
 var ___HTML_LOADER_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(958), __webpack_require__.b);
 // Module
-var ___HTML_LOADER_REPLACEMENT_0___ = getUrl_default()(___HTML_LOADER_IMPORT_0___);
+var header_HTML_LOADER_REPLACEMENT_0_ = getUrl_default()(header_HTML_LOADER_IMPORT_0_);
 var ___HTML_LOADER_REPLACEMENT_1___ = getUrl_default()(___HTML_LOADER_IMPORT_1___);
-var code = "<header class=\"header\"> <div class=\"container\"> <div class=\"header_wrapper\"> <a class=\"header_main_page\" href=\"./index.html\"> <img class=\"header_logo\" src=\"" + ___HTML_LOADER_REPLACEMENT_0___ + "\" alt=\"logo\"> </a> <nav class=\"nav\"> <ul class=\"nav_list\"> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"#favoritesCoffe\">Favorite coffee</a></li> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"#about\">About</a></li> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"#mobile\">Mobile app</a></li> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"#footer\">Contact us</a></li> </ul> </nav> <div class=\"header_btn_wrapper\"> <a class=\"header_btn hover_border\" href=\"./menu.html\"> Menu <img class=\"header_btn_logo\" src=\"" + ___HTML_LOADER_REPLACEMENT_1___ + "\" alt=\"coffee-cup\"> </a> </div> </div> </div> </header>";
+var header_code = "<header class=\"header\"> <div class=\"container\"> <div class=\"header_wrapper\"> <a class=\"header_main_page\" href=\"./index.html\"> <img class=\"header_logo\" src=\"" + header_HTML_LOADER_REPLACEMENT_0_ + "\" alt=\"logo\"> </a> <nav class=\"nav\"> <ul class=\"nav_list\"> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"./index.html#favoritesCoffe\">Favorite coffee</a></li> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"./index.html#about\">About</a></li> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"./index.html#mobile\">Mobile app</a> </li> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"#footer\">Contact us</a> </li> </ul> </nav> <div class=\"header_btn_wrapper\"> <a class=\"header_btn hover_border\" href=\"./menu.html\"> Menu <img class=\"header_btn_logo\" src=\"" + ___HTML_LOADER_REPLACEMENT_1___ + "\" alt=\"coffee-cup\"> </a> </div> </div> </div> </header>";
 // Exports
-/* harmony default export */ var header = (code);
+/* harmony default export */ var header = (header_code);
 ;// CONCATENATED MODULE: ./src/modules/header/header.js
 
 
@@ -256,7 +272,7 @@ console.log(menuBtn);
 var enjoy_HTML_LOADER_IMPORT_0_ = new URL(/* asset import */ __webpack_require__(958), __webpack_require__.b);
 // Module
 var enjoy_HTML_LOADER_REPLACEMENT_0_ = getUrl_default()(enjoy_HTML_LOADER_IMPORT_0_);
-var enjoy_code = "<section id=\"enjoy\" class=\"enjoy\"> <div class=\"container\"> <div class=\"enjoy_wrapper\"> <div class=\"enjoy_inner\"> <h1 class=\"enjoy_title\"><span class=\"enjoy_word\">Enjoy</span> premium coffee at our charming cafe</h1> <span class=\"enjoy_description\">With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.</span> <a href=\"../../../menu.html\" class=\"enjoy_btn\"> <span class=\"enjoy_btn_text\">Menu</span> <img class=\"enjoy_btn_logo\" src=\"" + enjoy_HTML_LOADER_REPLACEMENT_0_ + "\" alt=\"coffee-cup\"> </a> </div> </div> </div> </section>";
+var enjoy_code = "<section id=\"enjoy\" class=\"enjoy\"> <div class=\"container\"> <div class=\"enjoy_wrapper\"> <div class=\"enjoy_inner\"> <h1 class=\"enjoy_title\"><span class=\"enjoy_word\">Enjoy</span> premium coffee at our charming cafe</h1> <span class=\"enjoy_description\">With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.</span> <a href=\"./menu.html\" class=\"enjoy_btn\"> <span class=\"enjoy_btn_text\">Menu</span> <img class=\"enjoy_btn_logo\" src=\"" + enjoy_HTML_LOADER_REPLACEMENT_0_ + "\" alt=\"coffee-cup\"> </a> </div> </div> </div> </section>";
 // Exports
 /* harmony default export */ var enjoy = (enjoy_code);
 ;// CONCATENATED MODULE: ./src/modules/main/enjoy/enjoy.js
