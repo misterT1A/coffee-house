@@ -65,3 +65,17 @@
         opacity: 1;
     }
 }
+
+@media screen and (max-width: 800px) {
+    .enjoy_wrapper {
+        padding: 100px 60px;
+    }
+
+    .enjoy_btn_text {
+        transform: translateX(0);
+    }
+
+    .enjoy_btn_logo {
+        opacity: 1;
+    }
+}
