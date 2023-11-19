@@ -116,3 +116,21 @@
         opacity: 1;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .footer_wrapper {
+        flex-direction: column;
+        padding: 100px 60px 103px;
+        gap: 101px;
+    }
+
+    .footer_left,
+    .footer_right {
+        width: 100%;
+    }
+
+    .footer_right {
+        gap: 35px;
+    }
+
+}

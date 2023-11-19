@@ -103,3 +103,25 @@
     width: 100%;
     height: auto;
 }
+
+@media screen and (max-width: 768px) {
+    .mobile_wrapper {
+        flex-direction: column;
+    }
+
+    .mobile_left_part {
+        width: 100%;
+    }
+
+    .mobile_title {
+        letter-spacing: -0.2px;
+    }
+
+    .mobile_right_part {
+        width: 100%;
+    }
+
+    .mobile_wrapper {
+        gap: 98px;
+    }
+}
