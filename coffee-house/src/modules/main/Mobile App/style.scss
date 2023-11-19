@@ -1,0 +1,105 @@
+.mobile {
+    margin-bottom: 100px;
+}
+
+.mobile_wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+.mobile_left_part,
+.mobile_right_part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile_left_part {
+    width: 50%
+}
+
+.mobile_right_part {
+    width: 50%
+}
+
+
+.mobile_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    height: 100%;
+}
+
+.mobile_title {
+    @include heading-2;
+}
+
+.mobile_word {
+    @include heading-2-accent;
+    color: $text-accent;
+    // letter-spacing: -1px;
+}
+
+.mobile_desription {
+    @include body-medium;
+}
+
+.mobile_buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.svg_path path {
+    transition: all 0.4s linear;
+}
+
+.mobile_btn {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 100px;
+    border: 1px solid $border-dark;
+    transition: all 0.4s linear;
+
+    &:hover .svg_path path {
+        fill: $text-light;
+    }
+
+    &:hover {
+        background-color: $bg-container;
+    }
+
+    &:hover .mobile_btn_title,
+    &:hover .mobile_btn_text {
+        color: $text-light;
+    }
+}
+
+.mobile_btn_content {
+    min-width: 114px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+}
+
+.mobile_btn_title {
+    transition: color 0.3s linear;
+    @include body-caption;
+}
+
+.mobile_btn_text {
+    transition: color 0.3s linear;
+    @include action-link-button
+}
+
+.mobile_img {
+    max-width: 630px;
+    width: 100%;
+    height: auto;
+}
