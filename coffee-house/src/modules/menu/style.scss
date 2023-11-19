@@ -139,3 +139,49 @@
 .menu_item_desription {
     @include body-medium;
 }
+
+.menu_load {
+    display: none;
+}
+
+
+.menu_load_btn svg {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu_load_btn svg:hover {
+    fill: $bg-container;
+}
+
+.svg_load_arrow {
+    transition: all 0.3s ease-in-out;
+}
+
+.menu_load_btn svg:hover .svg_load_arrow {
+    stroke: $text-light;
+}
+
+@media screen and (max-width: 768px) {
+
+    .menu {
+        margin-bottom: 99px;
+    }
+
+    .menu_content {
+        grid-row-gap: 40px;
+        grid-column-gap: 13px;
+    }
+
+    .menu_item:nth-child(n+5) {
+        display: none;
+    }
+
+    .menu_load {
+        display: block;
+    }
+
+    .menu_item_content {
+        padding-left: 19px;
+    }
+}
