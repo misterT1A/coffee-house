@@ -125,3 +125,24 @@
         gap: 98px;
     }
 }
+
+@media screen and (max-width: 510px) {
+
+    .mobile_wrapper {
+        gap: 39px;
+    }
+
+    .mobile_title,
+    .mobile_word {
+        font-size: 32px;
+    }
+
+    .mobile_buttons {
+        flex-direction: column;
+        gap: 17px;
+    }
+
+    .mobile_btn {
+        max-width: 200px;
+    }
+}

@@ -133,3 +133,19 @@
     }
 
 }
+
+@media screen and (max-width: 510px) {
+    .favorites {
+        margin-bottom: 101px;
+    }
+
+    .fav_clider_arrow {
+        display: none;
+    }
+
+    .favorites_title,
+    .favorites_word {
+        font-size: 32px;
+    }
+
+}

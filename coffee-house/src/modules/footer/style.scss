@@ -134,3 +134,16 @@
     }
 
 }
+
+@media screen and (max-width: 560px) {
+
+    .footer_wrapper {
+        padding: 60px 16px 62px;
+        gap: 42px;
+    }
+
+    .footer_title,
+    .footer_word {
+        font-size: 32px;
+    }
+}

@@ -79,3 +79,24 @@
         opacity: 1;
     }
 }
+
+@media screen and (max-width: 732px) {
+    .enjoy {
+        margin-bottom: 101px;
+    }
+
+    .enjoy_wrapper {
+        padding: 60px 16px;
+        height: 552px;
+    }
+
+    .enjoy_inner {
+        gap: 40px;
+    }
+
+    .enjoy_title,
+    .enjoy_word {
+        line-height: 115%;
+        font-size: 42px;
+    }
+}
