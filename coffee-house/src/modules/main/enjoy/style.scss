@@ -56,11 +56,22 @@
         transition: all 0.4s linear;
     }
 
-    &:hover &_text {
+    // &:hover &_text {
+    //     transform: translateX(0);
+    // }
+
+    // &:hover &_logo {
+    //     width: 20px;
+    //     opacity: 1;
+    // }
+}
+
+@media not all and (hover: none) {
+    .enjoy_btn:hover .enjoy_btn_text {
         transform: translateX(0);
     }
 
-    &:hover &_logo {
+    .enjoy_btn:hover .enjoy_btn_logo {
         width: 20px;
         opacity: 1;
     }

@@ -44,7 +44,7 @@
     transition: all 0.3s ease-in-out;
 }
 
-.fav_clider_arrow svg:hover {
+.fav_clider_arrow svg:active {
     fill: $bg-container;
 }
 
@@ -52,7 +52,7 @@
     transition: all 0.3s ease-in-out;
 }
 
-.fav_clider_arrow svg:hover .svg_arrow {
+.fav_clider_arrow svg:active .svg_arrow {
     stroke: $text-light;
 }
 
@@ -146,6 +146,17 @@
     .favorites_title,
     .favorites_word {
         font-size: 32px;
+    }
+
+}
+
+@media not all and (hover: none) {
+    .fav_clider_arrow svg:hover {
+        fill: $bg-container;
+    }
+
+    .fav_clider_arrow svg:hover .svg_arrow {
+        stroke: $text-light;
     }
 
 }
