@@ -7,6 +7,8 @@ import main from './modules/main/main';
 import footer from './modules/footer/footer';
 import BurgerMenu from './modules/header/burger';
 import { Observer } from './modules/main/enjoy/enjoy';
+import Slider from './modules/main/Favourites_Coffee/slider';
+// import ObserverSlider from './modules/main/Favourites_Coffee/slider';
 
 const bodyMain = document.querySelector('body');
 bodyMain.append(header.header, main, footer.footer);
@@ -43,47 +45,149 @@ window.addEventListener(
   false,
 );
 // =====
+// slider
 
-const nextBtn = document.querySelectorAll('.fav_clider_arrow');
+const sladerBlock = document.querySelector('.favorites_slider_wrapper');
+const slideBtn = document.querySelectorAll('.fav_clider_arrow');
 const slider = document.querySelector('.fav_slider');
 const sliderWrapper = document.querySelector('.fav_slider_wrapper');
 const slidesElements = document.querySelectorAll('.fav_slider_content');
+const pagElems = document.querySelectorAll('.fav_pag_element');
+const pagTimeElems = document.querySelectorAll('.fav_pag_time');
 const slide1 = sliderWrapper.children[0];
+const count = 0;
+const timeCount = 0;
+const isMove = false;
 
-function checkWidth() {
-  const elemWidth = slider.offsetWidth;
-  slidesElements.forEach((element) => {
-    element.setAttribute('style', `width: ${elemWidth}px`);
-  });
-}
-checkWidth();
-window.addEventListener('resize', checkWidth);
-// const slide2 = sliderWrapper.children[1];
-// const slide3 = sliderWrapper.children[2];
+const xx = new Slider(sladerBlock);
+// console.log(xx.slider);
 
-// const arrSlides = [slide1, slide2, slide3];
+// function changePagElem(counter) {
+//   pagElems.forEach((elem) => {
+//     if (elem.classList.contains('fav_pag_active')) {
+//       elem.classList.remove('fav_pag_hover');
+//       elem.classList.remove('fav_pag_active');
+//       elem.children[0].setAttribute('style', 'width: 0');
+//     }
+//   });
+//   pagElems[counter].classList.add('fav_pag_active');
+//   // pagElems[counter].classList.add('fav_pag_hover');
+// }
 
-// console.log(arrSlides);
-nextBtn[0].addEventListener('click', () => {
-  const slide = sliderWrapper.children[0];
-  // sliderWrapper.append(slide2);
-  sliderWrapper.classList.add('slide_next');
-  setTimeout(() => {
-    sliderWrapper.classList.remove('slide_next');
-    sliderWrapper.children[0].remove();
-    sliderWrapper.append(slide);
-    // console.log(sliderWrapper.children[0]);
-  }, 650);
-});
+// function checkWidth() {
+//   const elemWidth = slider.offsetWidth;
+//   slidesElements.forEach((element) => {
+//     element.setAttribute('style', `width: ${elemWidth}px`);
+//   });
+// }
+// checkWidth();
+// changePagElem(count);
 
-nextBtn[1].addEventListener('click', () => {
-  const slide = sliderWrapper.children[2];
-  // sliderWrapper.before(slide);
-  sliderWrapper.classList.add('slide_prev');
-  setTimeout(() => {
-    sliderWrapper.classList.remove('slide_prev');
-    sliderWrapper.children[2].remove();
-    sliderWrapper.prepend(slide);
-    // console.log(sliderWrapper.children[0]);
-  }, 650);
-});
+// function slideNext() {
+//   if (!isMove) {
+//     isMove = true;
+//     timeCount = 0;
+
+//     if (count >= 2) {
+//       count = 0;
+//     } else {
+//       count += 1;
+//     }
+//     const slide = sliderWrapper.children[0];
+//     sliderWrapper.classList.add('slide_next');
+//     changePagElem(count);
+//     // pagElems[count].classList.add('fav_pag_hover');
+//     setTimeout(() => {
+//       sliderWrapper.classList.remove('slide_next');
+//       sliderWrapper.children[0].remove();
+//       sliderWrapper.append(slide);
+//       isMove = false;
+//     }, 650);
+//   }
+// }
+
+// window.addEventListener('resize', checkWidth);
+// slideBtn[1].addEventListener('click', slideNext);
+
+// function slidePrev() {
+//   if (!isMove) {
+//     isMove = true;
+//     timeCount = 0;
+
+//     if (count <= 0) {
+//       count = 2;
+//     } else {
+//       count -= 1;
+//     }
+
+//     const slide = sliderWrapper.children[2];
+//     sliderWrapper.classList.add('slide_prev');
+//     changePagElem(count);
+//     // pagElems[count].classList.add('fav_pag_hover');
+//     setTimeout(() => {
+//       sliderWrapper.classList.remove('slide_prev');
+//       sliderWrapper.children[2].remove();
+//       sliderWrapper.prepend(slide);
+//       isMove = false;
+//     }, 650);
+//   }
+// }
+
+// slideBtn[0].addEventListener('click', slidePrev);
+
+// function timeInterval() {
+//   pagElems.forEach((elem) => {
+//     if (elem.classList.contains('fav_pag_active')) {
+//       if (timeCount <= 110) {
+//         timeCount += 2.5;
+//         elem.children[0].setAttribute('style', `width: ${timeCount}%`);
+//       } else {
+//         timeCount = 0;
+//         elem.children[0].setAttribute('style', `width: ${timeCount}%`);
+//         elem.children[0].classList.add('fav_pag_hover');
+//         setTimeout(() => {
+//           elem.children[0].classList.remove('fav_pag_hover');
+//         }, 800);
+//         slideNext();
+//       }
+//     } else {
+//       elem.children[0].setAttribute('style', `width: 0%`);
+//     }
+//   });
+// }
+
+// let interval = setInterval(timeInterval, 125);
+
+// slider.addEventListener('mouseover', () => {
+//   clearInterval(interval);
+// });
+
+// slider.addEventListener('mouseout', () => {
+//   interval = setInterval(timeInterval, 125);
+// });
+
+// const optionsSlider = {
+//   root: null,
+//   rootMargin: '0px',
+//   threshold: 0.2,
+// };
+
+// const callback = (entries, observer) => {
+//   entries.forEach((entry) => {
+//     if (entry.isIntersecting) {
+//       console.log(
+//         'Элемент пересёк границу области и всё ещё соприкасается с ней!',
+//       );
+//       console.log(interval);
+//       interval = setInterval(timeInterval, 125);
+//       // observer.unobserve(entry.target);
+//     } else {
+//       console.log(interval);
+//       clearInterval(interval);
+//     }
+//   });
+// };
+
+// const observer = new IntersectionObserver(callback, optionsSlider);
+
+// observer.observe(slider);
