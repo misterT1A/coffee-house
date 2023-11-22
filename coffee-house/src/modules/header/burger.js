@@ -6,7 +6,6 @@ export default class BurgerMenu {
     this.navLinks = document.querySelectorAll('.nav_item_link');
     this.menuLink = document.querySelector('.header_btn');
     this.addListers();
-    console.log(this.wrapper);
   }
 
   addListers() {
