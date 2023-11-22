@@ -26,9 +26,24 @@
     z-index: 2;
     top: 0;
     left: 0;
-    min-width: 100%;
-    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
+
+// @media (min-aspect-ratio: 16/9) {
+//     enjoy_video {
+//         width: 100%;
+//         height: auto;
+//     }
+// }
+
+// @media (max-aspect-ratio: 16/9) {
+//     enjoy_video {
+//         width: auto;
+//         height: 100%;
+//     }
+// }
 
 .enjoy_title {
     @include heading-1;

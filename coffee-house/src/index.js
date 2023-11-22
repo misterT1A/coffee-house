@@ -6,6 +6,7 @@ import header from './modules/header/header';
 import main from './modules/main/main';
 import footer from './modules/footer/footer';
 import BurgerMenu from './modules/header/burger';
+import { Observer } from './modules/main/enjoy/enjoy';
 
 const bodyMain = document.querySelector('body');
 bodyMain.append(header.header, main, footer.footer);
@@ -25,3 +26,20 @@ menuBtn.addEventListener('click', () => {
 const { body } = document;
 const navTogle = new BurgerMenu(body);
 // ===
+
+// video perfomans
+
+const options = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.3,
+};
+
+window.addEventListener(
+  'load',
+  (event) => {
+    const observe = new Observer('#video', options);
+  },
+  false,
+);
+// =====
