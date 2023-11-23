@@ -42,6 +42,7 @@
 .fav_clider_arrow svg {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    touch-action: none;
 }
 
 .fav_clider_arrow svg:active {
@@ -101,9 +102,15 @@
     }
 }
 
-
 .fav_slider_content {
-    width: 1230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.fav_slider_content_inner {
     display: flex;
     flex-direction: column;
     align-items: center;

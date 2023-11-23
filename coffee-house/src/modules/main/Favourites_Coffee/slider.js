@@ -2,7 +2,10 @@ export default class Slider {
   constructor(sladerBlock) {
     this.sladerBlock = sladerBlock;
     this.slider = this.sladerBlock.querySelector('.fav_slider');
-    this.slideBtn = this.sladerBlock.querySelectorAll('.fav_clider_arrow');
+    this.sliderContent = this.sladerBlock.querySelectorAll(
+      '.fav_slider_content_inner',
+    );
+    this.slideBtn = this.sladerBlock.querySelectorAll('.arrowBtn');
     this.sliderWrapper = document.querySelector('.fav_slider_wrapper');
     this.slidesElements = this.sladerBlock.querySelectorAll(
       '.fav_slider_content',
@@ -12,6 +15,12 @@ export default class Slider {
     this.timeCount = 0;
     this.isMove = false;
     this.isOnView = false;
+    this.elemWidth = 0;
+    this.midleElem = 0;
+    this.posStart = 0;
+    this.posX1 = 0;
+    this.posX2 = 0;
+    this.posEnd = 0;
     this.checkWidth();
     this.changePagElem(this.count);
     this.addListners();
@@ -22,9 +31,10 @@ export default class Slider {
   }
 
   checkWidth() {
-    const elemWidth = this.slider.offsetWidth;
+    this.elemWidth = this.slider.offsetWidth;
+    this.midleElem = this.elemWidth / 2;
     this.slidesElements.forEach((element) => {
-      element.setAttribute('style', `width: ${elemWidth}px`);
+      element.setAttribute('style', `width: ${this.elemWidth}px`);
     });
   }
 
@@ -84,6 +94,23 @@ export default class Slider {
     }
   }
 
+  swipeStart(event) {
+    this.midleElem = this.elemWidth / 2;
+    this.posStart = event.touches[0].clientX;
+  }
+
+  swipeMove(event) {
+    this.posEnd = event.touches[0].clientX;
+  }
+
+  swipeEnd(event) {
+    if (this.posStart - this.posEnd > 0) {
+      this.slideNext();
+    } else {
+      this.slidePrev();
+    }
+  }
+
   timeInterval(elements) {
     elements.forEach((elem) => {
       if (elem.classList.contains('fav_pag_active')) {
@@ -109,15 +136,9 @@ export default class Slider {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) {
         this.isOnView = false;
-        console.log(
-          'Элемент пересёк границу области и всё ещё соприкасается с ней!',
-        );
-        console.log(this.autoInterval);
-
         clearInterval(this.autoInterval);
       } else {
         this.isOnView = true;
-        console.log(this.autoInterval);
         this.autoInterval = setInterval(
           () => this.timeInterval(this.pagElems),
           125,
@@ -144,19 +165,39 @@ export default class Slider {
     window.addEventListener('load', this.startObserver.bind(this));
     this.slideBtn[0].addEventListener('click', this.slidePrev.bind(this));
     this.slideBtn[1].addEventListener('click', this.slideNext.bind(this));
-    this.slider.addEventListener('mouseover', () => {
+    this.slider.addEventListener('touchstart', (event) => {
       if (this.isOnView) {
         clearInterval(this.autoInterval);
       }
+      this.swipeStart(event);
     });
-
-    this.slider.addEventListener('mouseout', () => {
+    this.slider.addEventListener('touchmove', (event) => {
+      this.swipeMove(event);
+    });
+    this.slider.addEventListener('touchend', (event) => {
       if (this.isOnView) {
         this.autoInterval = setInterval(
           () => this.timeInterval(this.pagElems),
           125,
         );
       }
+      this.swipeEnd(event);
+    });
+    this.sliderContent.forEach((elem) => {
+      elem.addEventListener('mouseover', () => {
+        if (this.isOnView) {
+          clearInterval(this.autoInterval);
+        }
+      });
+
+      elem.addEventListener('mouseout', () => {
+        if (this.isOnView) {
+          this.autoInterval = setInterval(
+            () => this.timeInterval(this.pagElems),
+            125,
+          );
+        }
+      });
     });
   }
 }
