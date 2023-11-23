@@ -1,86 +1,101 @@
-/**
- * @typedef {{
- *  tag: string,
- * classNames:Array<string>,
- * textContent: string,
- * attributes: Array,
- * callback: function,
- * }} ElementParams
- */
+import ElementCreator from './elementCreator';
+import img from '../../img/assets';
 
-export default class MenuElementCreator {
-  /**
-   * @param {ElementParams} param
-   */
-  constructor(param) {
+export default class MenuElementConstructor {
+  constructor(options) {
+    this.options = options;
     this.element = null;
-    this.createElement(param);
+    this.configure1();
+    this.configure2();
+    this.configure3();
   }
 
-  createElement(param) {
-    this.element = this.createElement(param.tag);
-    this.setCssClasses(param.classNames);
-    this.setTextContent(param.textContent, param.textHtml);
-    this.setCallback(param.callback);
-    this.setAllAttribute(param.attributes);
+  getMenuElement() {
+    return this.element.getElement();
   }
 
-  /**
-   * @returns {HTMLElement}
-   */
-  getElement() {
-    return this.element;
+  configure1() {
+    const param = {
+      tagName: 'div',
+      classNames: ['menu_item'],
+      textContent: null,
+      attributes: null,
+      callback: null,
+    };
+    this.element = new ElementCreator(param);
   }
 
-  /**
-   * @param {HTMLElement | ElementCreator} element
-   */
-  addInnerElement(...elements) {
-    elements.forEach((elem) => {
-      if (elem instanceof MenuElementCreator) {
-        this.element.append(elem.getElement());
-      } else {
-        this.element.append(elem);
-      }
-    });
+  configure2() {
+    const param1 = {
+      tagName: 'div',
+      classNames: ['menu_item_img'],
+      textContent: null,
+      attributes: null,
+      callback: null,
+    };
+    const element1 = new ElementCreator(param1);
+
+    const categoryList = Object.keys(img).filter(
+      (elem) => elem.replace(/[0-9]/g, '') === `${this.options.category}`,
+    );
+
+    const param2 = {
+      tagName: 'img',
+      classNames: null,
+      textContent: null,
+      attributes: {
+        src: img[categoryList[parseInt(this.options.pathImg, 10) - 1]],
+        alt: this.options.category,
+      },
+      callback: null,
+    };
+
+    const element2 = new ElementCreator(param2);
+    element1.getElement().append(element2.getElement());
+    this.element.getElement().append(element1.getElement());
   }
 
-  /**
-   * @param {Array<string>} cssClasses
-   */
-  setCssClasses(cssClasses) {
-    if (cssClasses) {
-      cssClasses.forEach((cssClass) => this.element.classList.add(cssClass));
-    }
-  }
+  configure3() {
+    const param = {
+      tagName: 'div',
+      classNames: ['menu_item_content'],
+      textContent: null,
+      attributes: null,
+      callback: null,
+    };
+    const element = new ElementCreator(param);
 
-  setAllAttribute(attributes) {
-    if (attributes) {
-      Object.keys(attributes).forEach((item) => {
-        this.element.setAttribute(item, attributes[item]);
-      });
-    }
-  }
-
-  /**
-   * @param {string} text
-   */
-  setTextContent(text, html) {
-    if (html) {
-      if (text) {
-        this.element.innerHTML = text;
-      }
-    } else {
-      this.element.textContent = text;
-    }
-  }
-
-  /**
-   * @param {function} callback
-   */
-  setCallback(callback) {
-    if (typeof callback === 'function') {
-      this.element.addEventListener('click', (event) => callback(event));
-    }
+    const param1 = {
+      tagName: 'div',
+      classNames: ['menu_item_title'],
+      textContent: this.options.name,
+      attributes: null,
+      callback: null,
+    };
+    const element1 = new ElementCreator(param1);
+    const param2 = {
+      tagName: 'div',
+      classNames: ['menu_item_desription'],
+      textContent: this.options.description,
+      attributes: null,
+      callback: null,
+    };
+    const element2 = new ElementCreator(param2);
+    const param3 = {
+      tagName: 'div',
+      classNames: ['menu_item_price'],
+      textContent: `$${this.options.price}`,
+      attributes: null,
+      callback: null,
+    };
+    const element3 = new ElementCreator(param3);
+    element
+      .getElement()
+      .append(
+        element1.getElement(),
+        element2.getElement(),
+        element3.getElement(),
+      );
+    this.element.getElement().append(element.getElement());
   }
 }

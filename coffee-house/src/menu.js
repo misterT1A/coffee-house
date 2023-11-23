@@ -18,8 +18,5 @@ const { body } = document;
 const navTogleMenu = new BurgerMenu(body);
 
 // menu constructor
-const menuWrapper = document.querySelector('.menu_content');
-const products = Products.filter((elem) => elem.category === 'coffee');
-
-const menuContent = new MenuConstructor(menuWrapper, products);
-console.log(menuContent);
+const menuWrapper = document.querySelector('.menu_wrapper');
+const menuContent = new MenuConstructor(menuWrapper, Products);
