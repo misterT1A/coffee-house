@@ -11,9 +11,14 @@ export default class Slider {
     this.count = 0;
     this.timeCount = 0;
     this.isMove = false;
+    this.isOnView = false;
     this.checkWidth();
     this.changePagElem(this.count);
     this.addListners();
+    // this.autoInterval = setInterval(
+    //   () => this.timeInterval(this.pagElems),
+    //   125,
+    // );
   }
 
   checkWidth() {
@@ -31,7 +36,6 @@ export default class Slider {
         elem.children[0].setAttribute('style', 'width: 0');
       }
     });
-    console.log(this.pagElems);
     this.pagElems[counter].classList.add('fav_pag_active');
   }
 
@@ -45,7 +49,6 @@ export default class Slider {
       } else {
         this.count += 1;
       }
-      console.log(this.sliderWrapper);
       const slide = this.sliderWrapper.children[0];
       this.sliderWrapper.classList.add('slide_next');
       this.changePagElem(this.count);
@@ -81,9 +84,79 @@ export default class Slider {
     }
   }
 
+  timeInterval(elements) {
+    elements.forEach((elem) => {
+      if (elem.classList.contains('fav_pag_active')) {
+        if (this.timeCount <= 110) {
+          this.timeCount += 2.5;
+          elem.children[0].setAttribute('style', `width: ${this.timeCount}%`);
+        } else {
+          this.timeCount = 0;
+          elem.children[0].setAttribute('style', `width: ${this.timeCount}%`);
+          elem.children[0].classList.add('fav_pag_hover');
+          setTimeout(() => {
+            elem.children[0].classList.remove('fav_pag_hover');
+          }, 800);
+          this.slideNext();
+        }
+      } else {
+        elem.children[0].setAttribute('style', `width: 0%`);
+      }
+    });
+  }
+
+  callbackObserver(entries, observer) {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) {
+        this.isOnView = false;
+        console.log(
+          'Элемент пересёк границу области и всё ещё соприкасается с ней!',
+        );
+        console.log(this.autoInterval);
+
+        clearInterval(this.autoInterval);
+      } else {
+        this.isOnView = true;
+        console.log(this.autoInterval);
+        this.autoInterval = setInterval(
+          () => this.timeInterval(this.pagElems),
+          125,
+        );
+      }
+    });
+  }
+
+  startObserver() {
+    this.options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2,
+    };
+    this.observerSlider = new IntersectionObserver(
+      this.callbackObserver.bind(this),
+      this.options,
+    );
+    this.observerSlider.observe(this.slider);
+  }
+
   addListners() {
-    window.addEventListener('resize', this.checkWidth);
-    this.slideBtn[0].addEventListener('click', this.slidePrev);
-    this.slideBtn[1].addEventListener('click', this.slideNext);
+    window.addEventListener('resize', this.checkWidth.bind(this));
+    window.addEventListener('load', this.startObserver.bind(this));
+    this.slideBtn[0].addEventListener('click', this.slidePrev.bind(this));
+    this.slideBtn[1].addEventListener('click', this.slideNext.bind(this));
+    this.slider.addEventListener('mouseover', () => {
+      if (this.isOnView) {
+        clearInterval(this.autoInterval);
+      }
+    });
+
+    this.slider.addEventListener('mouseout', () => {
+      if (this.isOnView) {
+        this.autoInterval = setInterval(
+          () => this.timeInterval(this.pagElems),
+          125,
+        );
+      }
+    });
   }
 }
