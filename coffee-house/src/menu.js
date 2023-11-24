@@ -11,6 +11,8 @@ const bodyMenu = document.querySelector('body');
 bodyMenu.append(header.header, menu.menu, footer.footer);
 
 const menuBtn = document.querySelector('.header_btn');
+// eslint-disable-next-line no-script-url
+menuBtn.setAttribute('href', 'javascript:void(0)');
 menuBtn.classList.add('menu_active');
 
 // burger

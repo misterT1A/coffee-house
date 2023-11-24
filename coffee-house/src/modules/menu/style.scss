@@ -53,6 +53,7 @@
 
 .menu_btn.btn_active {
     background-color: $bg-container;
+    cursor: default;
 }
 
 .menu_btn.btn_active .menu_btn_text {
@@ -97,6 +98,36 @@
     // &:hover .menu_item_img img {
     //     transform: scale(0.91);
     // }
+}
+
+.menu_item.menu_item_down {
+    animation: down;
+    animation-duration: 0.6s;
+}
+
+.menu_item.menu_item_up {
+    animation: up;
+    animation-duration: 0.6s;
+}
+
+@keyframes down {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes up {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .menu_item_img {

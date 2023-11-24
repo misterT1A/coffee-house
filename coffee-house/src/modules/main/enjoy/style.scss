@@ -31,20 +31,6 @@
     object-fit: cover;
 }
 
-// @media (min-aspect-ratio: 16/9) {
-//     enjoy_video {
-//         width: 100%;
-//         height: auto;
-//     }
-// }
-
-// @media (max-aspect-ratio: 16/9) {
-//     enjoy_video {
-//         width: auto;
-//         height: 100%;
-//     }
-// }
-
 .enjoy_title {
     @include heading-1;
     color: $text-light;
@@ -86,15 +72,6 @@
         opacity: 0;
         transition: all 0.4s linear;
     }
-
-    // &:hover &_text {
-    //     transform: translateX(0);
-    // }
-
-    // &:hover &_logo {
-    //     width: 20px;
-    //     opacity: 1;
-    // }
 }
 
 @media not all and (hover: none) {
