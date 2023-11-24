@@ -6,6 +6,8 @@ import header from './modules/header/header';
 import main from './modules/main/main';
 import footer from './modules/footer/footer';
 
+console.log('score: 100/100');
+
 const bodyMain = document.querySelector('body');
 bodyMain.append(header.header, main, footer.footer);
 

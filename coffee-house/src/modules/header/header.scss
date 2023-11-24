@@ -90,6 +90,10 @@
     }
 }
 
+.menu_active {
+    cursor: default;
+}
+
 .menu_active::after {
     position: absolute;
     top: 100%;
