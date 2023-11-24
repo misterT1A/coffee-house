@@ -24,10 +24,6 @@ export default class Slider {
     this.checkWidth();
     this.changePagElem(this.count);
     this.addListners();
-    // this.autoInterval = setInterval(
-    //   () => this.timeInterval(this.pagElems),
-    //   125,
-    // );
   }
 
   checkWidth() {

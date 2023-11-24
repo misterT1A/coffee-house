@@ -5,7 +5,12 @@ export default class MenuConstructor {
     this.container = container.querySelector('.menu_content');
     this.product = product;
     this.menuButtons = container.querySelectorAll('.menu_btn');
+    this.loadMenuBlock = container.querySelector('.menu_load');
+    this.btnLoadMore = container.querySelector('.menu_load_btn');
     this.isMenuChanging = false;
+    this.contentWidth = 0;
+    this.wasResizeHigh = false;
+    this.wasResizeLow = false;
     this.changeMenu(this.menuButtons[0]);
     this.addListners();
   }
@@ -19,10 +24,11 @@ export default class MenuConstructor {
 
   changeMenu(btn, changing, change = false) {
     if (!btn.classList.contains('btn_active')) {
-      if (!this.changing) {
+      if (!changing) {
         this.clearParentsCildren(change);
         this.changeActiveBtn(btn);
         this.addNewContent(btn, change);
+        this.checkBtnLoadMore();
       }
     }
   }
@@ -49,10 +55,27 @@ export default class MenuConstructor {
   }
 
   addNewContent(btn, change) {
-    const products = this.product.filter(
+    this.products = this.product.filter(
       (elem) => elem.category === `${btn.dataset.product}`,
     );
-    products.forEach((options) => {
+    if (this.products.length > 4) {
+      this.isBigContent = true;
+    } else {
+      this.isBigContent = false;
+    }
+    if (this.contentWidth <= 768) {
+      this.createMenuItems(this.products, change, true);
+    } else {
+      this.createMenuItems(this.products, change);
+    }
+  }
+
+  createMenuItems(arr, change, isShort = false) {
+    this.viewProducts = arr;
+    if (isShort) {
+      this.viewProducts = arr.filter((elem, index) => index < 4);
+    }
+    this.viewProducts.forEach((options) => {
       const element = new MenuElementConstructor(options);
       const elem = element.getMenuElement();
       if (!change) {
@@ -67,11 +90,57 @@ export default class MenuConstructor {
     });
   }
 
+  resizeContent() {
+    this.contentWidth = this.container.offsetWidth + 80;
+    this.checkBtnLoadMore();
+
+    if (this.contentWidth <= 768) {
+      this.wasResizeHigh = false;
+      if (!this.wasResizeLow) {
+        this.clearParentsCildren(false);
+        this.createMenuItems(this.products, false, true);
+        this.wasResizeLow = true;
+      }
+    } else {
+      this.wasResizeLow = false;
+      if (!this.wasResizeHigh) {
+        this.clearParentsCildren(false);
+        this.createMenuItems(this.products, false);
+        this.wasResizeHigh = true;
+      }
+    }
+  }
+
+  checkBtnLoadMore() {
+    if (this.loadMenuBlock.classList.contains('menu_load_visible')) {
+      this.loadMenuBlock.classList.remove('menu_load_visible');
+    }
+    if (this.contentWidth <= 768) {
+      if (this.products.length - this.viewProducts.length > 0) {
+        if (this.isBigContent) {
+          this.loadMenuBlock.classList.add('menu_load_visible');
+        }
+      } else {
+        this.loadMenuBlock.classList.remove('menu_load_visible');
+      }
+    }
+  }
+
+  loadMoreContent() {
+    const moreProducts = this.products.filter((elem, index) => index > 3);
+    this.createMenuItems(moreProducts, true);
+    this.viewProducts = this.products;
+    this.checkBtnLoadMore();
+  }
+
   addListners() {
+    window.addEventListener('load', this.resizeContent.bind(this));
+    window.addEventListener('resize', this.resizeContent.bind(this));
     this.menuButtons.forEach((btn) =>
       btn.addEventListener('click', (event) =>
         this.changeMenu(btn, this.changing, true),
       ),
     );
+    this.btnLoadMore.addEventListener('click', this.loadMoreContent.bind(this));
   }
 }
