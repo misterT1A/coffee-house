@@ -9,3 +9,5 @@ bodyMenu.append(header.header, menu.menu, footer.footer);
 
 const menuBtn = document.querySelector('.header_btn');
 menuBtn.classList.add('menu_active');
+// eslint-disable-next-line no-script-url
+menuBtn.setAttribute('href', 'javascript:void(0)');

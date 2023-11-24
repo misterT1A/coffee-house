@@ -53,6 +53,7 @@
 
 .menu_btn.btn_active {
     background-color: $bg-container;
+    cursor: default;
 }
 
 .menu_btn.btn_active .menu_btn_text {

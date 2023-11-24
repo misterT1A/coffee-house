@@ -248,7 +248,7 @@ var ___HTML_LOADER_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(
 // Module
 var header_HTML_LOADER_REPLACEMENT_0_ = getUrl_default()(header_HTML_LOADER_IMPORT_0_);
 var ___HTML_LOADER_REPLACEMENT_1___ = getUrl_default()(___HTML_LOADER_IMPORT_1___);
-var header_code = "<header class=\"header\"> <div class=\"container\"> <div class=\"header_wrapper\"> <a class=\"header_main_page\" href=\"./index.html\"> <img class=\"header_logo\" src=\"" + header_HTML_LOADER_REPLACEMENT_0_ + "\" alt=\"logo\"> </a> <nav class=\"nav\"> <ul class=\"nav_list\"> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"./index.html#favoritesCoffe\">Favorite coffee</a></li> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"./index.html#about\">About</a></li> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"./index.html#mobile\">Mobile app</a> </li> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"#footer\">Contact us</a> </li> </ul> </nav> <div class=\"header_btn_wrapper\"> <a class=\"header_btn hover_border\" href=\"./menu.html\"> Menu <img class=\"header_btn_logo\" src=\"" + ___HTML_LOADER_REPLACEMENT_1___ + "\" alt=\"coffee-cup\"> </a> </div> </div> </div> </header>";
+var header_code = "<header class=\"header\"> <div class=\"container\"> <div class=\"header_wrapper\"> <a class=\"header_main_page\" href=\"./index.html\"> <img class=\"header_logo\" src=\"" + header_HTML_LOADER_REPLACEMENT_0_ + "\" alt=\"logo\"> </a> <div class=\"nav_wrapper\"> <nav class=\"nav\"> <ul class=\"nav_list\"> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"./index.html#favoritesCoffe\">Favorite coffee</a></li> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"./index.html#about\">About</a> </li> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"./index.html#mobile\">Mobile app</a> </li> <li class=\"nav_item\"><a class=\"nav_item_link hover_border\" href=\"#footer\">Contact us</a> </li> </ul> </nav> <div class=\"header_btn_wrapper\"> <a class=\"header_btn hover_border\" href=\"./menu.html\"> Menu <img class=\"header_btn_logo\" src=\"" + ___HTML_LOADER_REPLACEMENT_1___ + "\" alt=\"coffee-cup\"> </a> </div> </div> <div class=\"burger_btn\"> <span class=\"burger_btn_icon\"></span> </div> </div> </div> </header>";
 // Exports
 /* harmony default export */ var header = (header_code);
 ;// CONCATENATED MODULE: ./src/modules/header/header.js
@@ -261,11 +261,6 @@ const header_header = toElement(header);
 });
 const mainPageBtn = document.querySelector('.header_main_page');
 const menuBtn = document.querySelector('.header_btn');
-console.log(menuBtn);
-
-// menuBtn.addEventListener('click', () => {
-//   menuBtn.classList.add('active');
-// });
 ;// CONCATENATED MODULE: ./src/modules/main/enjoy/enjoy.html
 // Imports
 
@@ -369,8 +364,13 @@ const footer_footer = toElement(footer);
 
 
 
+console.log('score: 100/100');
 const bodyMain = document.querySelector('body');
 bodyMain.append(modules_header_header.header, main_main, modules_footer_footer.footer);
+const logoLink = document.querySelector('.header_main_page');
+// eslint-disable-next-line no-script-url
+logoLink.setAttribute('href', 'javascript:void(0)');
+logoLink.classList.add('menu_logo_disabled');
 const src_mainPageBtn = document.querySelector('.header_main_page');
 const src_menuBtn = document.querySelector('.header_btn');
 src_menuBtn.addEventListener('click', () => {

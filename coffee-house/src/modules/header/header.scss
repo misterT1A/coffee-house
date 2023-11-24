@@ -14,6 +14,10 @@
     height: auto;
 }
 
+.header_main_page.menu_logo_disabled {
+    cursor: auto;
+}
+
 .nav_wrapper {
     display: flex;
     align-items: center;
@@ -84,6 +88,10 @@
         width: 100%;
         opacity: 1;
     }
+}
+
+.menu_active {
+    cursor: default;
 }
 
 .menu_active::after {
