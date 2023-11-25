@@ -23,7 +23,6 @@
     width: 50%
 }
 
-
 .mobile_content {
     display: flex;
     flex-direction: column;
@@ -39,7 +38,6 @@
 .mobile_word {
     @include heading-2-accent;
     color: $text-accent;
-    // letter-spacing: -1px;
 }
 
 .mobile_desription {
