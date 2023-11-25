@@ -92,13 +92,13 @@ export default class MenuConstructor {
 
   resizeContent() {
     this.contentWidth = this.container.offsetWidth + 80;
-    this.checkBtnLoadMore();
 
     if (this.contentWidth <= 768) {
       this.wasResizeHigh = false;
       if (!this.wasResizeLow) {
         this.clearParentsCildren(false);
         this.createMenuItems(this.products, false, true);
+        this.checkBtnLoadMore();
         this.wasResizeLow = true;
       }
     } else {
@@ -106,23 +106,25 @@ export default class MenuConstructor {
       if (!this.wasResizeHigh) {
         this.clearParentsCildren(false);
         this.createMenuItems(this.products, false);
+        this.checkBtnLoadMore();
         this.wasResizeHigh = true;
       }
     }
   }
 
   checkBtnLoadMore() {
-    if (this.loadMenuBlock.classList.contains('menu_load_visible')) {
-      this.loadMenuBlock.classList.remove('menu_load_visible');
-    }
     if (this.contentWidth <= 768) {
       if (this.products.length - this.viewProducts.length > 0) {
         if (this.isBigContent) {
           this.loadMenuBlock.classList.add('menu_load_visible');
         }
-      } else {
-        this.loadMenuBlock.classList.remove('menu_load_visible');
+      } else if (this.loadMenuBlock.classList.contains('menu_load_visible')) {
+        setTimeout(() => {
+          this.loadMenuBlock.classList.remove('menu_load_visible');
+        }, 590);
       }
+    } else {
+      this.loadMenuBlock.classList.remove('menu_load_visible');
     }
   }
 
