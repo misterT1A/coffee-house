@@ -3,6 +3,7 @@ import ElementCreator from '../elementCreator';
 import img from '../../../img/assets';
 import './popUp.scss';
 import Products from '../../../products.json';
+import toElement from '../HtmlToElement';
 
 export default class PopUp {
   constructor(body, item) {
@@ -11,6 +12,8 @@ export default class PopUp {
     this.element = null;
     this.priceSize = 0;
     this.priceAdd = 0;
+    this.listSize = this.lisnerSizeBtns.bind(this);
+    this.closeBlock = this.closeModal.bind(this);
     this.configure(this.body);
     this.addListners();
   }
@@ -20,11 +23,10 @@ export default class PopUp {
   }
 
   configure(wrapper) {
-    this.element = document.createElement('template');
-    this.element.innerHTML = PopUpHtml;
-    this.changeContent(this.element.content.firstChild);
-    this.element.content.firstChild.classList.add('modal_open');
-    wrapper.append(this.element.content.firstChild);
+    this.element = toElement(PopUpHtml);
+    this.changeContent(this.element);
+    this.element.classList.add('modal_open');
+    wrapper.append(this.element);
   }
 
   changeContent(element) {
@@ -38,6 +40,8 @@ export default class PopUp {
     this.changeName(container.children[0], targetItemObj);
     this.changeDescription(container.children[0], targetItemObj);
     this.changeDefaultPrice(container.children[3], targetItemObj);
+    this.changeSizeContent(this.containerItem, targetItemObj);
+    this.changeAddContent(this.containerItem, targetItemObj);
   }
 
   changeName(containerText, targetText) {
@@ -58,7 +62,35 @@ export default class PopUp {
     this.priceSize = +this.defaultPrice;
   }
 
-  changePriceSize(containerItem, btn, targetContent) {
+  changeSizeContent(containerItem, targetContent) {
+    const sizeContent = containerItem.children[1].children[1];
+    [...sizeContent.children].forEach((elem, index) => {
+      if (index % 2 !== 0) {
+        const elemContent = elem.children[1];
+        elemContent.textContent =
+          targetContent.sizes[elem.children[0].textContent.toLowerCase()].size;
+      }
+    });
+  }
+
+  changeAddContent(containerItem, targetContent) {
+    const sizeContent = containerItem.children[2].children[1];
+    [...sizeContent.children].forEach((elem, index) => {
+      if (index % 2 !== 0) {
+        const elemContent = elem.children[1];
+        const targeTexttContent = elem.children[0].textContent - 1;
+        elemContent.textContent =
+          targetContent.additives[targeTexttContent].name;
+        elem.setAttribute(
+          'data-add',
+          `${targetContent.additives[targeTexttContent].name}`,
+        );
+      }
+    });
+  }
+
+  calcPriceSize(containerItem, btn, targetContent) {
+    console.log('df');
     const priceText = containerItem.children[3].children[1];
     const countBtn = btn.dataset.size;
     const addPrice = targetContent.sizes[countBtn]['add-price'];
@@ -66,74 +98,101 @@ export default class PopUp {
     priceText.textContent = `$${(+this.priceSize + +this.priceAdd).toFixed(2)}`;
   }
 
-  changePriceAdd(containerItem, btn, targetContent, isAddPrice) {
+  calcPriceAdd(containerItem, btn, targetContent, isAddPrice) {
     const priceText = containerItem.children[3].children[1];
     const countBtn = btn.dataset.add;
     const [addPrice] = targetContent.additives.filter(
       (element) => element.name === countBtn,
     );
-    if (isAddPrice) {
-      this.priceAdd = +this.priceAdd + +addPrice['add-price'];
-    } else {
-      this.priceAdd = +this.priceAdd - +addPrice['add-price'];
-    }
-    priceText.textContent = `$${(+this.priceSize + +this.priceAdd).toFixed(2)}`;
+
+    console.log(countBtn);
+    // if (isAddPrice) {
+    //   this.priceAdd = +this.priceAdd + +addPrice['add-price'];
+    // } else {
+    //   this.priceAdd = +this.priceAdd - +addPrice['add-price'];
+    // }
+    // priceText.textContent = `$${(+this.priceSize + +this.priceAdd).toFixed(2)}`;
   }
 
-  addToContainer() {
-    this.body.append(this.element.getElement());
+  lisnerSizeBtns(e) {
+    if (
+      e.target.classList.contains('size_btn') ||
+      e.target.closest('.size_btn')
+    ) {
+      this.calcPriceSize(
+        this.containerItem,
+        e.target.closest('.size_btn'),
+        this.targetContent,
+      );
+    }
+  }
+
+  listnerAddBtns(e) {
+    if (
+      e.target.classList.contains('add_btn') ||
+      e.target.closest('.add_btn')
+    ) {
+      if (
+        e.target.classList.contains('add_btn') ||
+        e.target.closest('.add_btn').classList.contains('modal_active_checkbox')
+      ) {
+        e.target.closest('.add_btn').classList.remove('modal_active_checkbox');
+        this.calcPriceAdd(
+          this.containerItem,
+          e.target.closest('.add_btn'),
+          this.targetContent,
+          false,
+        );
+      } else {
+        e.target.closest('.add_btn').classList.add('modal_active_checkbox');
+        this.calcPriceAdd(
+          this.containerItem,
+          e.target.closest('.add_btn'),
+          this.targetContent,
+          true,
+        );
+      }
+    }
+  }
+
+  closeModal(e) {
+    if (
+      e.target.classList.contains('modal_button_close') ||
+      e.target.closest('.modal_button_close')
+    ) {
+      console.log('close');
+      e.target.closest('.modal').classList.remove('modal_open');
+
+      this.closeModalBlock(e);
+    }
+  }
+
+  closeModalBlock(e) {
+    this.deleteListner();
+
+    setTimeout(() => {
+      e.target.closest('.modal').remove();
+    }, 500);
+  }
+
+  deleteListner() {
+    console.log('delete');
+    document.removeEventListener('click', this.listSize);
+    document.removeEventListener('click', this.closeBlock);
+  }
+
+  addListner() {
+    console.log('add');
+    document.addEventListener('click', this.listSize);
   }
 
   addListners() {
-    document.addEventListener('click', (e) => {
-      if (
-        e.target.classList.contains('size_btn') ||
-        e.target.closest('.size_btn')
-      ) {
-        this.changePriceSize(
-          this.containerItem,
-          e.target.closest('.size_btn'),
-          this.targetContent,
-        );
-      }
-    });
-    document.addEventListener('click', (e) => {
-      if (
-        e.target.classList.contains('add_btn') ||
-        e.target.closest('.add_btn')
-      ) {
-        if (
-          e.target
-            .closest('.add_btn')
-            .classList.contains('modal_active_checkbox')
-        ) {
-          e.target
-            .closest('.add_btn')
-            .classList.remove('modal_active_checkbox');
-          this.changePriceAdd(
-            this.containerItem,
-            e.target.closest('.add_btn'),
-            this.targetContent,
-            false,
-          );
-        } else {
-          e.target.closest('.add_btn').classList.add('modal_active_checkbox');
-          this.changePriceAdd(
-            this.containerItem,
-            e.target.closest('.add_btn'),
-            this.targetContent,
-            true,
-          );
-        }
-      }
-    });
-    document.addEventListener('click', (e) => {
-      if (
-        e.target.classList.contains('modal_button_close') ||
-        e.target.closest('.modal_button_close')
-      ) {
-        console.log(e.target.closest('.modal_button_close'));
-      }
-    });
+    this.addListner();
+
+    document.removeEventListener('click', this.listnerAddBtns);
+    document.addEventListener('click', this.listnerAddBtns);
+
+    // document.removeEventListener('click', this.closeModal);
+    document.addEventListener('click', this.closeBlock);
   }
 }

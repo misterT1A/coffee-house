@@ -32,7 +32,7 @@ document.addEventListener('click', (e) => {
   ) {
     const item = e.target.closest('.menu_item');
     const modal = new PopUp(body, item);
-    body.append(modal);
+    body.append(modal.element);
   }
 });
 // =====

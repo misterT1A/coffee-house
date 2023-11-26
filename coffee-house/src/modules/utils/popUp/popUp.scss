@@ -13,7 +13,7 @@
     overflow: auto;
     overflow-x: hidden;
 
-    transition: all 0.8s linear;
+    transition: all 0.5s linear;
 }
 
 .modal.modal_open {
@@ -157,6 +157,10 @@
     }
 }
 
+.input_add:checked+.add_btn {
+    cursor: pointer;
+}
+
 .modal_price_block {
     display: flex;
     justify-content: space-between;
@@ -189,8 +193,28 @@
     padding: 10px 0;
     display: flex;
     justify-content: center;
+    transition: all 0.3s linear;
+    cursor: pointer;
 }
 
 .modal_close_text {
     @include action-link-button;
+}
+
+.modal_button_close:active {
+    background-color: $bg-container;
+
+    .modal_close_text {
+        color: $text-light;
+    }
+}
+
+@media not all and (hover: none) {
+    .modal_button_close:hover {
+        background-color: $bg-container;
+
+        .modal_close_text {
+            color: $text-light;
+        }
+    }
 }
