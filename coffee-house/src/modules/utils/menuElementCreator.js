@@ -19,7 +19,9 @@ export default class MenuElementConstructor {
       tagName: 'div',
       classNames: ['menu_item'],
       textContent: null,
-      attributes: null,
+      attributes: {
+        'data-name': this.options.name,
+      },
       callback: null,
     };
     this.element = new ElementCreator(param);

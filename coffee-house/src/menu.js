@@ -6,6 +6,7 @@ import menu from './modules/menu/menu';
 import footer from './modules/footer/footer';
 import BurgerMenu from './modules/header/burger';
 import MenuConstructor from './modules/utils/menuConstructor';
+import PopUp from './modules/utils/popUp/popUp';
 
 const bodyMenu = document.querySelector('body');
 bodyMenu.append(header.header, menu.menu, footer.footer);
@@ -22,3 +23,16 @@ const navTogleMenu = new BurgerMenu(body);
 // menu constructor
 const menuWrapper = document.querySelector('.menu_wrapper');
 const menuContent = new MenuConstructor(menuWrapper, Products);
+
+// modal
+document.addEventListener('click', (e) => {
+  if (
+    e.target.classList.contains('menu_item') ||
+    e.target.closest('.menu_item')
+  ) {
+    const item = e.target.closest('.menu_item');
+    const modal = new PopUp(body, item);
+    body.append(modal);
+  }
+});
+// =====
