@@ -1,5 +1,4 @@
 import PopUpHtml from './popUp.html';
-import ElementCreator from '../elementCreator';
 import img from '../../../img/assets';
 import './popUp.scss';
 import Products from '../../../products.json';
@@ -26,8 +25,8 @@ export default class PopUp {
   configure(wrapper) {
     this.element = toElement(PopUpHtml);
     this.changeContent(this.element);
-    this.element.classList.add('modal_open');
     wrapper.append(this.element);
+    setTimeout(() => this.element.classList.add('modal_open'), 300);
   }
 
   changeContent(element) {
@@ -38,11 +37,23 @@ export default class PopUp {
     this.targetContent = targetItemObj;
     const container = element.children[0].children[0].children[1];
     this.containerItem = container;
+    this.changeItem(element.children[0].children[0].children[0], targetItemObj);
     this.changeName(container.children[0], targetItemObj);
     this.changeDescription(container.children[0], targetItemObj);
     this.changeDefaultPrice(container.children[3], targetItemObj);
     this.changeSizeContent(this.containerItem, targetItemObj);
     this.changeAddContent(this.containerItem, targetItemObj);
+  }
+
+  changeItem(containerText, targetText) {
+    const imgUrl = containerText.children[0];
+    const categoryList = Object.keys(img).filter(
+      (elem) => elem.replace(/[0-9]/g, '') === `${targetText.category}`,
+    );
+    imgUrl.setAttribute(
+      'src',
+      img[categoryList[parseInt(targetText.pathImg, 10) - 1]],
+    );
   }
 
   changeName(containerText, targetText) {
@@ -58,7 +69,7 @@ export default class PopUp {
   changeDefaultPrice(containerText, targetText) {
     const item = containerText.children[1];
     const { price } = targetText;
-    item.textContent = price;
+    item.textContent = `$${price}`;
     this.defaultPrice = price;
     this.priceSize = +this.defaultPrice;
   }
@@ -91,7 +102,6 @@ export default class PopUp {
   }
 
   calcPriceSize(containerItem, btn, targetContent) {
-    console.log('df');
     const priceText = containerItem.children[3].children[1];
     const countBtn = btn.dataset.size;
     const addPrice = targetContent.sizes[countBtn]['add-price'];
@@ -106,7 +116,6 @@ export default class PopUp {
       (element) => element.name === countBtn,
     );
 
-    console.log(countBtn);
     if (isAddPrice) {
       this.priceAdd = +this.priceAdd + +addPrice['add-price'];
     } else {
@@ -134,7 +143,6 @@ export default class PopUp {
       e.target.closest('.add_btn')
     ) {
       if (
-        e.target.classList.contains('add_btn') ||
         e.target.closest('.add_btn').classList.contains('modal_active_checkbox')
       ) {
         e.target.closest('.add_btn').classList.remove('modal_active_checkbox');
@@ -161,9 +169,8 @@ export default class PopUp {
       e.target.classList.contains('modal_button_close') ||
       e.target.closest('.modal_button_close')
     ) {
-      console.log('close');
       e.target.closest('.modal').classList.remove('modal_open');
-
+      document.body.classList.remove('bodi_hidden');
       this.closeModalBlock(e);
     }
   }
@@ -173,11 +180,10 @@ export default class PopUp {
 
     setTimeout(() => {
       e.target.closest('.modal').remove();
-    }, 500);
+    }, 300);
   }
 
   deleteListner() {
-    console.log('delete');
     document.removeEventListener('click', this.listSize);
     document.removeEventListener('click', this.listAdd);
     document.removeEventListener('click', this.closeBlock);

@@ -1,5 +1,4 @@
 import MenuElementConstructor from './menuElementCreator';
-import PopUp from './popUp/popUp';
 
 export default class MenuConstructor {
   constructor(container, product) {
@@ -8,7 +7,6 @@ export default class MenuConstructor {
     this.menuButtons = container.querySelectorAll('.menu_btn');
     this.loadMenuBlock = container.querySelector('.menu_load');
     this.btnLoadMore = container.querySelector('.menu_load_btn');
-    // this.viewElements = [];
     this.isMenuChanging = false;
     this.contentWidth = 0;
     this.wasResizeHigh = false;
@@ -49,7 +47,6 @@ export default class MenuConstructor {
     } else {
       this.container.innerHTML = ' ';
     }
-    this.viewElements = [];
   }
 
   changeActiveBtn(btn) {
@@ -58,7 +55,6 @@ export default class MenuConstructor {
   }
 
   addNewContent(btn, change) {
-    this.viewElements = [];
     this.products = this.product.filter(
       (elem) => elem.category === `${btn.dataset.product}`,
     );
@@ -82,7 +78,6 @@ export default class MenuConstructor {
     this.viewProducts.forEach((options) => {
       const element = new MenuElementConstructor(options);
       const elem = element.getMenuElement();
-      this.viewElements.push(elem);
       if (!change) {
         this.container.append(elem);
       } else {
@@ -140,14 +135,6 @@ export default class MenuConstructor {
     this.checkBtnLoadMore();
   }
 
-  // modal() {
-  //   const bodyMain = document.body;
-  //   console.log('df');
-  //   const modal = new PopUp(bodyMain);
-  //   bodyMain.append(modal);
-  //   modal.modalUp();
-  // }
-
   addListners() {
     window.addEventListener('load', this.resizeContent.bind(this));
     window.addEventListener('resize', this.resizeContent.bind(this));
@@ -156,11 +143,6 @@ export default class MenuConstructor {
         this.changeMenu(btn, this.changing, true),
       ),
     );
-    // this.btnLoadMore.addEventListener('click', this.loadMoreContent.bind(this));
-    // setTimeout(() => {
-    //   this.viewElements.forEach((elem) =>
-    //     elem.addEventListener('click', this.modal),
-    //   );
-    // }, 100);
+    this.btnLoadMore.addEventListener('click', this.loadMoreContent.bind(this));
   }
 }

@@ -33,6 +33,7 @@ document.addEventListener('click', (e) => {
     const item = e.target.closest('.menu_item');
     const modal = new PopUp(body, item);
     body.append(modal.element);
+    body.classList.add('bodi_hidden');
   }
 });
 // =====

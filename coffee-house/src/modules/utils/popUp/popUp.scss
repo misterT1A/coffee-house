@@ -13,7 +13,7 @@
     overflow: auto;
     overflow-x: hidden;
 
-    transition: all 0.5s linear;
+    transition: all 0.3s linear;
 }
 
 .modal.modal_open {
@@ -26,7 +26,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 10px;
+    padding: 20px 40px;
 }
 
 .modal_content {
@@ -34,7 +34,7 @@
     padding: 16px;
     display: flex;
     width: 800px;
-    height: 504px;
+    // height: 504px;
     background-color: $bg-body;
 }
 
@@ -216,5 +216,32 @@
         .modal_close_text {
             color: $text-light;
         }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .modal_content_right {
+        width: 53%;
+        gap: 18px;
+    }
+
+    .size_buttons,
+    .add_buttons {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .modal_content_left {
+        display: none;
+    }
+
+    .modal_content_right {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .modal_body {
+        padding: 20px 19px;
     }
 }
