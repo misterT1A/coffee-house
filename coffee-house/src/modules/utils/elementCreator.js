@@ -1,15 +1,14 @@
 export default class ElementCreator {
-  constructor(param) {
+  constructor(options) {
     this.element = null;
-    this.createElement(param);
+    this.createElement(options);
   }
 
-  createElement(param) {
-    this.element = document.createElement(param.tagName);
-    this.setCssClasses(param.classNames);
-    this.setTextContent(param.textContent, param.textHtml);
-    this.setCallback(param.callback);
-    this.setAllAttribute(param.attributes);
+  createElement(options) {
+    this.element = document.createElement(options.tagName);
+    this.setClasses(options.classNames);
+    this.setContent(options.textContent, options.textHtml);
+    this.setAttribute(options.attributes);
   }
 
   getElement() {
@@ -26,13 +25,13 @@ export default class ElementCreator {
     });
   }
 
-  setCssClasses(cssClasses) {
+  setClasses(cssClasses) {
     if (cssClasses) {
       cssClasses.forEach((cssClass) => this.element.classList.add(cssClass));
     }
   }
 
-  setAllAttribute(attributes) {
+  setAttribute(attributes) {
     if (attributes) {
       Object.keys(attributes).forEach((item) => {
         this.element.setAttribute(item, attributes[item]);
@@ -40,19 +39,13 @@ export default class ElementCreator {
     }
   }
 
-  setTextContent(text, html) {
+  setContent(text, html) {
     if (html) {
       if (text) {
         this.element.innerHTML = text;
       }
     } else {
       this.element.textContent = text;
-    }
-  }
-
-  setCallback(callback) {
-    if (typeof callback === 'function') {
-      this.element.addEventListener('click', (event) => callback(event));
     }
   }
 }

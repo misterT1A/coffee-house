@@ -5,16 +5,26 @@ export default class BurgerMenu {
     this.burgerBtn = document.querySelector('.burger_btn');
     this.navLinks = document.querySelectorAll('.nav_item_link');
     this.menuLink = document.querySelector('.header_btn');
-    this.addListers();
+    this.addListners();
+    this.checkWidth();
   }
 
-  addListers() {
+  addListners() {
+    window.addEventListener('resize', this.checkWidth.bind(this));
     this.burgerBtn.addEventListener('click', this.navTogleOnBtn.bind(this));
     this.wrapper.addEventListener('click', this.checkNavActive.bind(this));
     this.navLinks.forEach((link) =>
       link.addEventListener('click', this.checkNavActive.bind(this)),
     );
     this.menuLink.addEventListener('click', this.checkNavActive.bind(this));
+  }
+
+  checkWidth() {
+    const windowWidth = document.body.offsetWidth;
+    console.log(this.windowWith);
+    if (windowWidth > 768) {
+      this.checkNavActive();
+    }
   }
 
   navTogleOnBtn() {

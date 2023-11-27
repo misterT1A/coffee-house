@@ -87,6 +87,7 @@
 
 .size_buttons,
 .add_buttons {
+    user-select: none;
     display: flex;
     gap: 7px;
     cursor: pointer;
