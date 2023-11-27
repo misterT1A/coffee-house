@@ -6,7 +6,7 @@ import menu from './modules/menu/menu';
 import footer from './modules/footer/footer';
 import BurgerMenu from './modules/header/burger';
 import MenuConstructor from './modules/utils/menuConstructor';
-import PopUp from './modules/utils/popUp/popUp';
+import Modal from './modules/utils/modal/modal';
 
 const bodyMenu = document.querySelector('body');
 bodyMenu.append(header.header, menu.menu, footer.footer);
@@ -31,9 +31,9 @@ document.addEventListener('click', (e) => {
     e.target.closest('.menu_item')
   ) {
     const item = e.target.closest('.menu_item');
-    const modal = new PopUp(body, item);
+    const modal = new Modal(body, item);
     body.append(modal.element);
-    body.classList.add('bodi_hidden');
+    body.classList.add('body_hidden');
   }
 });
 // =====

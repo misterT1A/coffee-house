@@ -36,7 +36,6 @@ export default class MenuElementConstructor {
       callback: null,
     };
     const element1 = new ElementCreator(param1);
-    // console.log(this.options.category);
 
     const categoryList = Object.keys(img).filter(
       (elem) => elem.replace(/[0-9]/g, '') === `${this.options.category}`,

@@ -1,10 +1,10 @@
-import PopUpHtml from './popUp.html';
+import ModalHtml from './modal.html';
 import img from '../../../img/assets';
-import './popUp.scss';
+import './modal.scss';
 import Products from '../../../products.json';
 import toElement from '../HtmlToElement';
 
-export default class PopUp {
+export default class Modal {
   constructor(body, item) {
     this.body = body;
     this.item = item;
@@ -23,7 +23,7 @@ export default class PopUp {
   }
 
   configure(wrapper) {
-    this.element = toElement(PopUpHtml);
+    this.element = toElement(ModalHtml);
     this.changeContent(this.element);
     wrapper.append(this.element);
     setTimeout(() => this.element.classList.add('modal_open'), 300);
@@ -43,6 +43,7 @@ export default class PopUp {
     this.changeDefaultPrice(container.children[3], targetItemObj);
     this.changeSizeContent(this.containerItem, targetItemObj);
     this.changeAddContent(this.containerItem, targetItemObj);
+    this.calcWithoutScrollBar();
   }
 
   changeItem(containerText, targetText) {
@@ -167,23 +168,37 @@ export default class PopUp {
   closeModal(e) {
     if (
       e.target.classList.contains('modal_button_close') ||
-      e.target.closest('.modal_button_close')
+      e.target.closest('.modal_button_close') ||
+      (e.target.classList.contains('modal_body') &&
+        !e.target.closest('modal_content'))
     ) {
       e.target.closest('.modal').classList.remove('modal_open');
-      document.body.classList.remove('bodi_hidden');
       this.closeModalBlock(e);
     }
   }
 
+  calcWithoutScrollBar() {
+    const scrollPadding = `${
+      window.innerWidth - document.querySelector('body').offsetWidth
+    }px`;
+    document.body.style.paddingRight = scrollPadding;
+  }
+
+  calcWithScrollBar() {
+    document.body.classList.remove('body_hidden');
+    document.body.style.paddingRight = '0px';
+  }
+
   closeModalBlock(e) {
-    this.deleteListner();
+    this.deleteListners();
 
     setTimeout(() => {
+      this.calcWithScrollBar();
       e.target.closest('.modal').remove();
     }, 300);
   }
 
-  deleteListner() {
+  deleteListners() {
     document.removeEventListener('click', this.listSize);
     document.removeEventListener('click', this.listAdd);
     document.removeEventListener('click', this.closeBlock);

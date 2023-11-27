@@ -15,13 +15,6 @@ export default class MenuConstructor {
     this.addListners();
   }
 
-  // configureDefault() {
-  //   this.product.forEach((options) => {
-  //     const element = new MenuElementConstructor(options);
-  //     this.container.append(element.getMenuElement());
-  //   });
-  // }
-
   changeMenu(btn, changing, change = false) {
     if (!btn.classList.contains('btn_active')) {
       if (!changing) {
