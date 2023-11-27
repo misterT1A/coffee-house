@@ -13,6 +13,7 @@ export default class PopUp {
     this.priceSize = 0;
     this.priceAdd = 0;
     this.listSize = this.lisnerSizeBtns.bind(this);
+    this.listAdd = this.listnerAddBtns.bind(this);
     this.closeBlock = this.closeModal.bind(this);
     this.configure(this.body);
     this.addListners();
@@ -106,12 +107,12 @@ export default class PopUp {
     );
 
     console.log(countBtn);
-    // if (isAddPrice) {
-    //   this.priceAdd = +this.priceAdd + +addPrice['add-price'];
-    // } else {
-    //   this.priceAdd = +this.priceAdd - +addPrice['add-price'];
-    // }
-    // priceText.textContent = `$${(+this.priceSize + +this.priceAdd).toFixed(2)}`;
+    if (isAddPrice) {
+      this.priceAdd = +this.priceAdd + +addPrice['add-price'];
+    } else {
+      this.priceAdd = +this.priceAdd - +addPrice['add-price'];
+    }
+    priceText.textContent = `$${(+this.priceSize + +this.priceAdd).toFixed(2)}`;
   }
 
   lisnerSizeBtns(e) {
@@ -178,21 +179,13 @@ export default class PopUp {
   deleteListner() {
     console.log('delete');
     document.removeEventListener('click', this.listSize);
+    document.removeEventListener('click', this.listAdd);
     document.removeEventListener('click', this.closeBlock);
   }
 
-  addListner() {
-    console.log('add');
-    document.addEventListener('click', this.listSize);
-  }
-
   addListners() {
-    this.addListner();
-
-    document.removeEventListener('click', this.listnerAddBtns);
-    document.addEventListener('click', this.listnerAddBtns);
-
-    // document.removeEventListener('click', this.closeModal);
+    document.addEventListener('click', this.listSize);
+    document.addEventListener('click', this.listAdd);
     document.addEventListener('click', this.closeBlock);
   }
 }
