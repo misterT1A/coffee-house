@@ -1,22 +1,22 @@
 export default class Slider {
-  constructor(sliderBlock) {
-    this.sliderBlock = sliderBlock;
-    this.slider = this.sliderBlock.querySelector('.fav_slider');
-    this.sliderContent = this.sliderBlock.querySelectorAll(
+  constructor(sladerBlock) {
+    this.sladerBlock = sladerBlock;
+    this.slider = this.sladerBlock.querySelector('.fav_slider');
+    this.sliderContent = this.sladerBlock.querySelectorAll(
       '.fav_slider_content_inner',
     );
-    this.slideBtn = this.sliderBlock.querySelectorAll('.arrowBtn');
+    this.slideBtn = this.sladerBlock.querySelectorAll('.arrowBtn');
     this.sliderWrapper = document.querySelector('.fav_slider_wrapper');
-    this.slidesElements = this.sliderBlock.querySelectorAll(
+    this.slidesElements = this.sladerBlock.querySelectorAll(
       '.fav_slider_content',
     );
     this.pagElems = document.querySelectorAll('.fav_pag_element');
     this.count = 0;
     this.timeCount = 0;
     this.isMove = false;
-    this.isSwipeMouse = false;
     this.isOnView = false;
     this.elemWidth = 0;
+    this.midleElem = 0;
     this.posStart = 0;
     this.posX1 = 0;
     this.posX2 = 0;
@@ -28,6 +28,7 @@ export default class Slider {
 
   checkWidth() {
     this.elemWidth = this.slider.offsetWidth;
+    this.midleElem = this.elemWidth / 2;
     this.slidesElements.forEach((element) => {
       element.setAttribute('style', `width: ${this.elemWidth}px`);
     });
@@ -44,25 +45,25 @@ export default class Slider {
     this.pagElems[counter].classList.add('fav_pag_active');
   }
 
-  changeTransform() {
-    const slide = this.sliderWrapper;
-    const widthCount = 33.3 * this.count;
-    slide.setAttribute('style', `transform: translateX(${-widthCount}%)`);
-    this.changePagElem(this.count);
-    this.isMove = false;
-  }
-
   slideNext() {
     if (!this.isMove) {
       this.isMove = true;
       this.timeCount = 0;
+
       if (this.count >= 2) {
         this.count = 0;
-        this.changeTransform();
       } else {
         this.count += 1;
-        this.changeTransform();
       }
+      const slide = this.sliderWrapper.children[0];
+      this.sliderWrapper.classList.add('slide_next');
+      this.changePagElem(this.count);
+      setTimeout(() => {
+        this.sliderWrapper.classList.remove('slide_next');
+        this.sliderWrapper.children[0].remove();
+        this.sliderWrapper.append(slide);
+        this.isMove = false;
+      }, 650);
     }
   }
 
@@ -73,46 +74,36 @@ export default class Slider {
 
       if (this.count <= 0) {
         this.count = 2;
-        this.changeTransform();
       } else {
         this.count -= 1;
-        this.changeTransform();
       }
+
+      const slide = this.sliderWrapper.children[2];
+      this.sliderWrapper.classList.add('slide_prev');
+      this.changePagElem(this.count);
+      setTimeout(() => {
+        this.sliderWrapper.classList.remove('slide_prev');
+        this.sliderWrapper.children[2].remove();
+        this.sliderWrapper.prepend(slide);
+        this.isMove = false;
+      }, 650);
     }
   }
 
-  swipeStartMouse(event) {
-    this.posStartX = event.clientX;
-    this.posStartY = event.clientY;
+  swipeStart(event) {
+    this.midleElem = this.elemWidth / 2;
+    this.posStart = event.touches[0].clientX;
   }
 
-  swipeStartTouch(event) {
-    this.posStartX = event.touches[0].clientX;
-    this.posStartY = event.touches[0].clientY;
-  }
-
-  swipeMoveMouse(event) {
-    this.posEndX = event.clientX;
-    this.posEndY = event.clientY;
-  }
-
-  swipeMoveTouch(event) {
-    this.posEndX = event.touches[0].clientX;
-    this.posEndY = event.touches[0].clientY;
+  swipeMove(event) {
+    this.posEnd = event.touches[0].clientX;
   }
 
   swipeEnd(event) {
-    console.log(this.posStart);
-    console.log(this.posEnd);
-    if (
-      Math.abs(this.posStartX - this.posEndX) > 50 &&
-      Math.abs(this.posStartY - this.posEndY) < 30
-    ) {
-      if (this.posStartX - this.posEndX > 0) {
-        this.slideNext();
-      } else {
-        this.slidePrev();
-      }
+    if (this.posStart - this.posEnd > 0) {
+      this.slideNext();
+    } else {
+      this.slidePrev();
     }
   }
 
@@ -174,10 +165,10 @@ export default class Slider {
       if (this.isOnView) {
         clearInterval(this.autoInterval);
       }
-      this.swipeStartTouch(event);
+      this.swipeStart(event);
     });
     this.slider.addEventListener('touchmove', (event) => {
-      this.swipeMoveTouch(event);
+      this.swipeMove(event);
     });
     this.slider.addEventListener('touchend', (event) => {
       if (this.isOnView) {
@@ -188,53 +179,19 @@ export default class Slider {
       }
       this.swipeEnd(event);
     });
-    this.slider.addEventListener('mousedown', (event) => {
-      if (this.isOnView) {
-        if (!this.isSwipeMouse) {
-          this.isSwipeMouse = true;
-          clearInterval(this.autoInterval);
-        }
-      }
-      this.swipeStartMouse(event);
-    });
-    this.slider.addEventListener('mousemove', (event) => {
-      this.swipeMoveMouse(event);
-    });
-    this.slider.addEventListener('mouseup', (event) => {
-      if (this.isOnView) {
-        if (
-          event.target.classList.contains('fav_slider_content_inner') ||
-          event.target.closest('.fav_slider_content_inner')
-        ) {
-          this.swipeEnd(event);
-          this.isSwipeMouse = false;
-        } else if (this.isSwipeMouse) {
-          this.swipeEnd(event);
-          this.autoInterval = setInterval(
-            () => this.timeInterval(this.pagElems),
-            125,
-          );
-          this.isSwipeMouse = false;
-        }
-      }
-    });
     this.sliderContent.forEach((elem) => {
       elem.addEventListener('mouseover', () => {
         if (this.isOnView) {
-          if (!this.isSwipeMouse) {
-            clearInterval(this.autoInterval);
-          }
+          clearInterval(this.autoInterval);
         }
       });
 
       elem.addEventListener('mouseout', () => {
         if (this.isOnView) {
-          if (!this.isSwipeMouse) {
-            this.autoInterval = setInterval(
-              () => this.timeInterval(this.pagElems),
-              125,
-            );
-          }
+          this.autoInterval = setInterval(
+            () => this.timeInterval(this.pagElems),
+            125,
+          );
         }
       });
     });

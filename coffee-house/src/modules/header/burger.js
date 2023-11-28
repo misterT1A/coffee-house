@@ -21,7 +21,6 @@ export default class BurgerMenu {
 
   checkWidth() {
     const windowWidth = document.body.offsetWidth;
-    console.log(this.windowWith);
     if (windowWidth > 768) {
       this.checkNavActive();
     }
