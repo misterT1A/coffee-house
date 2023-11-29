@@ -84,10 +84,10 @@
         opacity: 0;
     }
 
-    &:hover::after {
-        width: 100%;
-        opacity: 1;
-    }
+    // &:hover::after {
+    //     width: 100%;
+    //     opacity: 1;
+    // }
 }
 
 .menu_active {
@@ -150,5 +150,12 @@
 
     .burger_btn {
         display: flex;
+    }
+}
+
+@media not all and (hover: none) {
+    .hover_border:hover::after {
+        width: 100%;
+        opacity: 1;
     }
 }

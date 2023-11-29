@@ -15,7 +15,7 @@
     flex-direction: column;
     max-width: 530px;
     width: 100%;
-    gap: 40px
+    gap: 41px
 }
 
 .enjoy_title {
@@ -56,12 +56,58 @@
         transition: all 0.4s linear;
     }
 
-    &:hover &_text {
+    // &:hover &_text {
+    //     transform: translateX(0);
+    // }
+
+    // &:hover &_logo {
+    //     width: 20px;
+    //     opacity: 1;
+    // }
+}
+
+@media not all and (hover: none) {
+    .enjoy_btn:hover .enjoy_btn_text {
         transform: translateX(0);
     }
 
-    &:hover &_logo {
+    .enjoy_btn:hover .enjoy_btn_logo {
         width: 20px;
         opacity: 1;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .enjoy_wrapper {
+        padding: 100px 60px;
+    }
+
+    .enjoy_btn_text {
+        transform: translateX(0);
+    }
+
+    .enjoy_btn_logo {
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 732px) {
+    .enjoy {
+        margin-bottom: 101px;
+    }
+
+    .enjoy_wrapper {
+        padding: 60px 16px;
+        height: 552px;
+    }
+
+    .enjoy_inner {
+        gap: 40px;
+    }
+
+    .enjoy_title,
+    .enjoy_word {
+        line-height: 115%;
+        font-size: 42px;
     }
 }
