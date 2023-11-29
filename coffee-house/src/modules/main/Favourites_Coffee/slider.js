@@ -105,8 +105,8 @@ export default class Slider {
     console.log(this.posStart);
     console.log(this.posEnd);
     if (
-      Math.abs(this.posStartX - this.posEndX) > 50 &&
-      Math.abs(this.posStartY - this.posEndY) < 30
+      Math.abs(this.posStartX - this.posEndX) > 30 &&
+      Math.abs(this.posStartY - this.posEndY) < 50
     ) {
       if (this.posStartX - this.posEndX > 0) {
         this.slideNext();
