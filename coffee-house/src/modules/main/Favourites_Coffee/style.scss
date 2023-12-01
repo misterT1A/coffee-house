@@ -44,7 +44,7 @@
     transition: all 0.3s ease-in-out;
 }
 
-.fav_clider_arrow svg:hover {
+.fav_clider_arrow svg:active {
     fill: $bg-container;
 }
 
@@ -52,7 +52,7 @@
     transition: all 0.3s ease-in-out;
 }
 
-.fav_clider_arrow svg:hover .svg_arrow {
+.fav_clider_arrow svg:active .svg_arrow {
     stroke: $text-light;
 }
 
@@ -121,4 +121,42 @@
 
 .fav_pag_active {
     background-color: $border-dark;
+}
+
+@media screen and (max-width: 768px) {
+    .favorites_slider_inner {
+        padding: 0;
+    }
+
+    .favorites_slider_wrapper {
+        margin-bottom: 39px;
+    }
+
+}
+
+@media screen and (max-width: 510px) {
+    .favorites {
+        margin-bottom: 101px;
+    }
+
+    .fav_clider_arrow {
+        display: none;
+    }
+
+    .favorites_title,
+    .favorites_word {
+        font-size: 32px;
+    }
+
+}
+
+@media not all and (hover: none) {
+    .fav_clider_arrow svg:hover {
+        fill: $bg-container;
+    }
+
+    .fav_clider_arrow svg:hover .svg_arrow {
+        stroke: $text-light;
+    }
+
 }

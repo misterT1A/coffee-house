@@ -31,11 +31,11 @@
     transition: all 0.3s linear;
     fill: $bg-container;
 
-    &:hover {
+    &:active {
         fill: $bg-body;
     }
 
-    &:hover path {
+    &:active path {
         stroke: $text-dark;
     }
 
@@ -111,8 +111,54 @@
         opacity: 0;
     }
 
-    &:hover::after {
+    // &:active::after {
+    //     width: 100%;
+    //     opacity: 1;
+    // }
+}
+
+@media not all and (hover: none) {
+    .footer_svg:hover {
+        fill: $bg-body;
+    }
+
+    .footer_svg:hover path {
+        stroke: $text-dark;
+    }
+
+    .footer_border:hover::after {
         width: 100%;
         opacity: 1;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .footer_wrapper {
+        flex-direction: column;
+        padding: 100px 60px 103px;
+        gap: 101px;
+    }
+
+    .footer_left,
+    .footer_right {
+        width: 100%;
+    }
+
+    .footer_right {
+        gap: 35px;
+    }
+
+}
+
+@media screen and (max-width: 560px) {
+
+    .footer_wrapper {
+        padding: 60px 16px 62px;
+        gap: 42px;
+    }
+
+    .footer_title,
+    .footer_word {
+        font-size: 32px;
     }
 }

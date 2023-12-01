@@ -38,15 +38,15 @@
     align-items: center;
     transition: all 0.4s linear;
 
-    &:hover {
+    &:active {
         background-color: $bg-container;
     }
 
-    &:hover .menu_btn_text {
+    &:active .menu_btn_text {
         color: $text-light
     }
 
-    &:hover .menu_btn_icon rect {
+    &:active .menu_btn_icon rect {
         fill: $text-light;
     }
 }
@@ -95,9 +95,9 @@
     flex-direction: column;
     align-items: center;
 
-    &:hover .menu_item_img img {
-        transform: scale(0.91);
-    }
+    // &:hover .menu_item_img img {
+    //     transform: scale(0.91);
+    // }
 }
 
 .menu_item_img {
@@ -139,4 +139,89 @@
 
 .menu_item_desription {
     @include body-medium;
+}
+
+.menu_load {
+    display: none;
+}
+
+
+.menu_load_btn svg {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu_load_btn svg:active {
+    fill: $bg-container;
+}
+
+.svg_load_arrow {
+    transition: all 0.3s ease-in-out;
+}
+
+.menu_load_btn svg:active .svg_load_arrow {
+    stroke: $text-light;
+}
+
+@media not all and (hover: none) {
+
+    .menu_btn:hover {
+        background-color: $bg-container;
+    }
+
+    .menu_btn:hover .menu_btn_text {
+        color: $text-light
+    }
+
+    .menu_btn:hover .menu_btn_icon rect {
+        fill: $text-light;
+    }
+
+    .menu_item:hover .menu_item_img img {
+        transform: scale(0.91);
+    }
+
+    .menu_load_btn svg:hover {
+        fill: $bg-container;
+    }
+
+    .menu_load_btn svg:hover .svg_load_arrow {
+        stroke: $text-light;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .menu {
+        margin-bottom: 99px;
+    }
+
+    .menu_content {
+        grid-row-gap: 40px;
+        grid-column-gap: 13px;
+    }
+
+    .menu_item:nth-child(n+5) {
+        display: none;
+    }
+
+    .menu_load {
+        display: block;
+    }
+
+    .menu_item_content {
+        padding-left: 19px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .menu_title,
+    .menu_word {
+        font-size: 32px;
+    }
+
+    .menu_pagination {
+        gap: 6px;
+    }
 }
