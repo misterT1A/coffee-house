@@ -1,0 +1,10 @@
+/node_modules
+# /src
+/dist
+/package-lock.json
+# /.gitignore
+# /.eslintrc.json
+# /package.json
+# /.prettierrc.json
+# /webpack.config.js
+# /.browserslistrc

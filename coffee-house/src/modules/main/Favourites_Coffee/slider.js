@@ -102,8 +102,6 @@ export default class Slider {
   }
 
   swipeEnd(event) {
-    console.log(this.posStart);
-    console.log(this.posEnd);
     if (
       Math.abs(this.posStartX - this.posEndX) > 30 &&
       Math.abs(this.posStartY - this.posEndY) < 50
