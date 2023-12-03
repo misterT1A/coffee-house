@@ -92,26 +92,3 @@
     font-weight: 600;
     line-height: 125%;
 }
-
-// @mixin hover-border() {
-//     &::after {
-//         position: absolute;
-//         top: 100%;
-//         left: 50%;
-//         z-index: 2;
-//         display: block;
-//         content: "";
-//         width: 0;
-//         height: 2px;
-//         background-color: $text-dark;
-//         transition: all 0.5s linear;
-
-//         transform: translateX(-50%);
-//         opacity: 0;
-//     }
-
-//     &:hover::after {
-//         width: 100%;
-//         opacity: 1;
-//     }
-// }
