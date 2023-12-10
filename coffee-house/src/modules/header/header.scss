@@ -4,6 +4,7 @@
 }
 
 .header_wrapper {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,6 +24,11 @@
     align-items: center;
     width: 100%;
     justify-content: space-between;
+    transition: all 0.3s linear;
+}
+
+.nav_wrapper.nav_active {
+    left: 0;
 }
 
 .nav {
@@ -83,11 +89,10 @@
         transform: translateX(-50%);
         opacity: 0;
     }
+}
 
-    // &:hover::after {
-    //     width: 100%;
-    //     opacity: 1;
-    // }
+.menu_active {
+    cursor: default;
 }
 
 .menu_active {
@@ -122,6 +127,8 @@
 
 .burger_btn_icon {
     position: relative;
+    width: 16px;
+    height: 1px;
 
     &::after {
         top: 3px;
@@ -136,16 +143,72 @@
 .burger_btn_icon::before {
     position: absolute;
     z-index: 2;
-    transform: translateX(-50%);
+    // transform: translateX(-50%);
     width: 16px;
     height: 2px;
     content: "";
     background-color: $border-dark;
+    transition: all 0.3s linear;
+}
+
+.burger_btn.burger_btn_active {
+    .burger_btn_icon {
+        height: 2px;
+    }
+
+    .burger_btn_icon::after {
+        top: 0;
+        transform: rotate(-45deg);
+        // translateY(-5.5px)
+    }
+
+    .burger_btn_icon::before {
+        top: 0;
+        transform: rotate(45deg);
+    }
 }
 
 @media screen and (max-width: 768px) {
     .nav_wrapper {
         display: none;
+        padding: 75px 40px;
+        position: fixed;
+        z-index: 10;
+        top: 81px;
+        left: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: calc(100vh - 60px);
+        background-color: $bg-body;
+        gap: 93px;
+    }
+
+    .nav {
+        flex-direction: column;
+    }
+
+    .nav_list {
+        flex-direction: column;
+        gap: 52px;
+    }
+
+    .nav_item_link,
+    .header_btn {
+        font-size: 32px;
+    }
+
+    .header_btn {
+        gap: 16px;
+        align-items: center;
+    }
+
+    .header_btn_logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .header_btn_wrapper {
+        height: auto;
     }
 
     .burger_btn {

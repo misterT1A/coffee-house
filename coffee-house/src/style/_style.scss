@@ -29,16 +29,24 @@ a {
     cursor: pointer;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
+    // font-family: 'Inter', sans-serif;
+    // font-family: 'Forum', serif;
+    // color: var(--black);
     background-color: $bg-body;
     font-size: 62.5%;
     padding: 19px 0 0 0;
 }
 
+.body_hidden {
+    overflow: hidden;
+}
 
 .container {
     max-width: 1440px;
