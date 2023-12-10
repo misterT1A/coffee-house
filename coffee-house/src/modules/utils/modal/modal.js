@@ -33,16 +33,18 @@ export default class Modal {
     const targetItem = Products.filter(
       (elem) => elem.name === this.item.dataset.name,
     );
-    const targetItemObj = { ...targetItem }[0];
-    this.targetContent = targetItemObj;
+    [this.targetContent] = targetItem;
     const container = element.children[0].children[0].children[1];
     this.containerItem = container;
-    this.changeItem(element.children[0].children[0].children[0], targetItemObj);
-    this.changeName(container.children[0], targetItemObj);
-    this.changeDescription(container.children[0], targetItemObj);
-    this.changeDefaultPrice(container.children[3], targetItemObj);
-    this.changeSizeContent(this.containerItem, targetItemObj);
-    this.changeAddContent(this.containerItem, targetItemObj);
+    this.changeItem(
+      element.children[0].children[0].children[0],
+      this.targetContent,
+    );
+    this.changeName(container.children[0], this.targetContent);
+    this.changeDescription(container.children[0], this.targetContent);
+    this.changeDefaultPrice(container.children[3], this.targetContent);
+    this.changeSizeContent(this.containerItem, this.targetContent);
+    this.changeAddContent(this.containerItem, this.targetContent);
     this.calcWithoutScrollBar();
   }
 
