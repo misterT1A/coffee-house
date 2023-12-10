@@ -36,7 +36,7 @@ export default class Slider {
   changePagElem(counter) {
     this.pagElems.forEach((elem) => {
       if (elem.classList.contains('fav_pag_active')) {
-        elem.classList.remove('fav_pag_hover');
+        // elem.classList.remove('fav_pag_hover');
         elem.classList.remove('fav_pag_active');
         elem.children[0].setAttribute('style', 'width: 0');
       }
@@ -123,10 +123,10 @@ export default class Slider {
         } else {
           this.timeCount = 0;
           elem.children[0].setAttribute('style', `width: ${this.timeCount}%`);
-          elem.children[0].classList.add('fav_pag_hover');
-          setTimeout(() => {
-            elem.children[0].classList.remove('fav_pag_hover');
-          }, 800);
+          // elem.children[0].classList.add('fav_pag_hover');
+          // setTimeout(() => {
+          //   elem.children[0].classList.remove('fav_pag_hover');
+          // }, 800);
           this.slideNext();
         }
       } else {

@@ -1,6 +1,6 @@
 export default class BurgerMenu {
-  constructor(body) {
-    this.body = body;
+  constructor() {
+    this.body = document.body;
     this.windowWidth = window.matchMedia('(max-width: 768px)');
     this.logoBtn = document.querySelector('.header_main_page ');
     this.wrapper = document.querySelector('.nav_wrapper');
