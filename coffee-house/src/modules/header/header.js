@@ -7,7 +7,3 @@ export default { header };
 
 const mainPageBtn = document.querySelector('.header_main_page');
 const menuBtn = document.querySelector('.header_btn');
-
-// menuBtn.addEventListener('click', () => {
-//   menuBtn.classList.add('active');
-// });
