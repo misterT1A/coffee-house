@@ -2,39 +2,46 @@ import MenuElementConstructor from './menuElementCreator';
 
 export default class MenuConstructor {
   constructor(container, product) {
+    this.body = document.body;
     this.container = container.querySelector('.menu_content');
     this.product = product;
     this.menuButtons = container.querySelectorAll('.menu_btn');
+    [this.menuBtnDefault] = this.menuButtons;
     this.loadMenuBlock = container.querySelector('.menu_load');
     this.btnLoadMore = container.querySelector('.menu_load_btn');
+    this.windowWidth = window.matchMedia('(max-width: 768px)');
     this.isMenuChanging = false;
+    this.isNowChangingProgress = false;
     this.contentWidth = 0;
     this.wasResizeHigh = false;
     this.wasResizeLow = false;
-    this.changeMenu(this.menuButtons[0]);
+    this.animationDelay = 600;
+    this.changeMenu(this.menuBtnDefault);
     this.addListners();
   }
 
-  changeMenu(btn, changing, change = false) {
+  changeMenu(btn, changing, isChangeContent = false) {
     if (!btn.classList.contains('btn_active')) {
       if (!changing) {
-        this.clearParentsCildren(change);
+        this.clearParentsCildren(isChangeContent);
         this.changeActiveBtn(btn);
-        this.addNewContent(btn, change);
+        this.addNewContent(btn, isChangeContent);
         this.checkBtnLoadMore();
       }
     }
   }
 
-  clearParentsCildren(change) {
-    if (change) {
-      this.changing = true;
+  clearParentsCildren(isChangeContent) {
+    if (isChangeContent) {
+      this.isNowChangingProgress = true;
       setTimeout(() => {
         const childList = [...this.container.children];
         childList.forEach((elem) => {
           elem.classList.remove('menu_item_up');
           elem.classList.add('menu_item_down');
-          setTimeout(() => elem.remove(), 550);
+          elem.addEventListener('animationend', () => {
+            elem.remove();
+          });
         });
       }, 100);
     } else {
@@ -47,7 +54,7 @@ export default class MenuConstructor {
     btn.classList.add('btn_active');
   }
 
-  addNewContent(btn, change) {
+  addNewContent(btn, isChangeContent) {
     this.products = this.product.filter(
       (elem) => elem.category === `${btn.dataset.product}`,
     );
@@ -56,14 +63,14 @@ export default class MenuConstructor {
     } else {
       this.isBigContent = false;
     }
-    if (this.contentWidth <= 768) {
-      this.createMenuItems(this.products, change, true);
+    if (this.windowWidth.matches) {
+      this.createMenuItems(this.products, isChangeContent, true);
     } else {
-      this.createMenuItems(this.products, change);
+      this.createMenuItems(this.products, isChangeContent);
     }
   }
 
-  createMenuItems(arr, change, isShort = false) {
+  createMenuItems(arr, isChangeContent, isShort = false) {
     this.viewProducts = arr;
     if (isShort) {
       this.viewProducts = arr.filter((elem, index) => index < 4);
@@ -71,42 +78,42 @@ export default class MenuConstructor {
     this.viewProducts.forEach((options) => {
       const element = new MenuElementConstructor(options);
       const elem = element.getMenuElement();
-      if (!change) {
+      if (!isChangeContent) {
         this.container.append(elem);
       } else {
         setTimeout(() => {
           elem.classList.add('menu_item_up');
           this.container.append(elem);
-          this.changing = false;
-        }, 600);
+          this.isNowChangingProgress = false;
+        }, this.animationDelay);
       }
     });
   }
 
   resizeContent() {
-    this.contentWidth = this.container.offsetWidth + 80;
-
-    if (this.contentWidth <= 768) {
-      this.wasResizeHigh = false;
-      if (!this.wasResizeLow) {
-        this.clearParentsCildren(false);
-        this.createMenuItems(this.products, false, true);
-        this.checkBtnLoadMore();
-        this.wasResizeLow = true;
-      }
+    if (this.windowWidth.matches) {
+      // this.wasResizeHigh = false;
+      this.clearParentsCildren(false);
+      this.createMenuItems(this.products, false, true);
+      // if (!this.wasResizeLow) {
+      //   this.createMenuItems(this.products, false, true);
+      //   this.wasResizeLow = true;
+      // }
     } else {
-      this.wasResizeLow = false;
-      if (!this.wasResizeHigh) {
-        this.clearParentsCildren(false);
-        this.createMenuItems(this.products, false);
-        this.checkBtnLoadMore();
-        this.wasResizeHigh = true;
-      }
+      this.clearParentsCildren(false);
+      this.createMenuItems(this.products, false);
+      // this.wasResizeLow = false;
+      // if (!this.wasResizeHigh) {
+      //   this.createMenuItems(this.products, false);
+      //   this.wasResizeHigh = true;
+      // }
     }
+
+    this.checkBtnLoadMore();
   }
 
   checkBtnLoadMore() {
-    if (this.contentWidth <= 768) {
+    if (this.windowWidth.matches) {
       if (this.products.length - this.viewProducts.length > 0) {
         if (this.isBigContent) {
           this.loadMenuBlock.classList.add('menu_load_visible');
@@ -114,7 +121,7 @@ export default class MenuConstructor {
       } else if (this.loadMenuBlock.classList.contains('menu_load_visible')) {
         setTimeout(() => {
           this.loadMenuBlock.classList.remove('menu_load_visible');
-        }, 590);
+        }, this.animationDelay);
       }
     } else {
       this.loadMenuBlock.classList.remove('menu_load_visible');
@@ -129,8 +136,8 @@ export default class MenuConstructor {
   }
 
   addListners() {
-    window.addEventListener('load', this.resizeContent.bind(this));
-    window.addEventListener('resize', this.resizeContent.bind(this));
+    document.addEventListener('load', this.resizeContent.bind(this));
+    this.windowWidth.addEventListener('change', this.resizeContent.bind(this));
     this.menuButtons.forEach((btn) =>
       btn.addEventListener('click', (event) =>
         this.changeMenu(btn, this.changing, true),

@@ -170,7 +170,7 @@
 
 @media screen and (max-width: 768px) {
     .nav_wrapper {
-        display: none;
+        display: flex;
         padding: 75px 40px;
         position: fixed;
         z-index: 10;

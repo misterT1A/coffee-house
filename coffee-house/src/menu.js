@@ -8,17 +8,16 @@ import BurgerMenu from './modules/header/burger';
 import MenuConstructor from './modules/utils/menuConstructor';
 import Modal from './modules/utils/modal/modal';
 
-const bodyMenu = document.querySelector('body');
-bodyMenu.append(header.header, menu.menu, footer.footer);
+const { body } = document;
+body.append(header.header, menu.menu, footer.footer);
 
+// disabled menu link
 const menuBtn = document.querySelector('.header_btn');
-// eslint-disable-next-line no-script-url
-menuBtn.setAttribute('href', 'javascript:void(0)');
+menuBtn.addEventListener('click', (e) => e.preventDefault());
 menuBtn.classList.add('menu_active');
 
 // burger
-const { body } = document;
-const navTogleMenu = new BurgerMenu(body);
+const navTogleMenu = new BurgerMenu();
 
 // menu constructor
 const menuWrapper = document.querySelector('.menu_wrapper');
