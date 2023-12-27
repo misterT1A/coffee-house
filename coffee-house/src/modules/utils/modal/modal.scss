@@ -1,0 +1,248 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: $bg-backdrop;
+
+    opacity: 0;
+    visibility: hidden;
+
+    overflow: auto;
+    overflow-x: hidden;
+
+    transition: all 0.3s linear;
+}
+
+.modal.modal_open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal_body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 40px;
+}
+
+.modal_content {
+    border-radius: 40px;
+    padding: 16px;
+    display: flex;
+    width: 800px;
+    // height: 504px;
+    background-color: $bg-body;
+}
+
+.modal_content_left {
+    width: 47%;
+    border-radius: 40px;
+    overflow: hidden;
+    height: max-content;
+}
+
+.modal_img {
+    width: 100%;
+    height: auto;
+    transform: scale(1.1);
+}
+
+.modal_content_right {
+    width: 69%;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+
+.modal_text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal_title {
+    @include heading-3;
+}
+
+.modal_desription {
+    @include body-medium;
+}
+
+.modal_size,
+.modal_add {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.modal_size_title,
+.modal_add_title {
+    @include body-medium;
+}
+
+.size_buttons,
+.add_buttons {
+    user-select: none;
+    display: flex;
+    gap: 7px;
+    cursor: pointer;
+}
+
+.size_btn,
+.add_btn {
+    display: flex;
+    gap: 8px;
+    border: 1px solid $border-light;
+    border-radius: 100px;
+    padding: 8px 16px 8px 8px;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.size_btn_logo,
+.add_btn_logo {
+    @include action-link-button;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: $border-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.size_btn_description,
+.add_btn_description {
+    @include action-link-button;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.size_btn.size_btn_active {
+    background-color: $bg-container;
+    cursor: default;
+
+    .size_btn_logo {
+        background-color: $bg-body;
+    }
+
+    .size_btn_description {
+        color: $bg-body;
+    }
+}
+
+.input_size,
+.input_add {
+    display: none;
+}
+
+.input_size:checked+.size_btn,
+.input_add:checked+.add_btn {
+    background-color: $bg-container;
+    cursor: default;
+
+    .size_btn_logo,
+    .add_btn_logo {
+        background-color: $bg-body;
+    }
+
+    .size_btn_description,
+    .add_btn_description {
+        color: $bg-body;
+    }
+}
+
+.input_add:checked+.add_btn {
+    cursor: pointer;
+}
+
+.modal_price_block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal_price_text,
+.modal_price {
+    @include heading-3;
+}
+
+.modal_promotion {
+    display: flex;
+    gap: 8px;
+    padding: 12px 0;
+    border-top: 1px solid $border-light;
+
+    & img {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.modal_prom_desc {
+    @include body-caption;
+}
+
+.modal_button_close {
+    border-radius: 100px;
+    border: 1px solid $bg-container;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.modal_close_text {
+    @include action-link-button;
+}
+
+.modal_button_close:active {
+    background-color: $bg-container;
+
+    .modal_close_text {
+        color: $text-light;
+    }
+}
+
+@media not all and (hover: none) {
+    .modal_button_close:hover {
+        background-color: $bg-container;
+
+        .modal_close_text {
+            color: $text-light;
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .modal_content_right {
+        width: 53%;
+        gap: 18px;
+    }
+
+    .size_buttons,
+    .add_buttons {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .modal_content_left {
+        display: none;
+    }
+
+    .modal_content_right {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .modal_body {
+        padding: 20px 19px;
+    }
+}
